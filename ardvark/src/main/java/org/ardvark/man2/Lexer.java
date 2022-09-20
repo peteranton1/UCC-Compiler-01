@@ -22,7 +22,7 @@ public abstract class Lexer {
 
   public void match(char x) {
     if (c == x) consume();
-    else throw new Error(String.format("expecting %cm found %c", x, c));
+    else throw new Error(String.format("expecting %c; found %c", x, c));
   }
 
   public abstract Token nextToken();
