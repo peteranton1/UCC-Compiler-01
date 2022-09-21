@@ -1,4 +1,4 @@
-package org.ardvark.man3;
+package org.ardvark._00_manual.man3;
 
 import java.util.ArrayList;
 import java.util.List;

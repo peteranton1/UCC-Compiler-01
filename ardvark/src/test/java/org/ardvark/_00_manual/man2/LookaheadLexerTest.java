@@ -1,15 +1,14 @@
-package org.ardvark.man3;
+package org.ardvark._00_manual.man2;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BacktrackLexerTest {
-
+public class LookaheadLexerTest {
   @Test
   public void shouldLexInputOk() {
-    final String input = "[a, b] = [123, bread]";
-    BacktrackLexer lexer = new BacktrackLexer(input);
+    final String input = "[a, b = 123, [br,ead]] ";
+    LookaheadLexer lexer = new LookaheadLexer(input);
     Token t = lexer.nextToken();
     while(t.type != Lexer.EOF_TYPE){
       System.out.println(t);

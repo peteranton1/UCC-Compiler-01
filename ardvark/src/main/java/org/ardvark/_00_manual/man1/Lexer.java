@@ -1,4 +1,4 @@
-package org.ardvark.man2;
+package org.ardvark._00_manual.man1;
 
 public abstract class Lexer {
 

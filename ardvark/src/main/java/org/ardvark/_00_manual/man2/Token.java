@@ -1,4 +1,4 @@
-package org.ardvark.man1;
+package org.ardvark._00_manual.man2;
 
 public class Token {
   public int type;
@@ -10,7 +10,7 @@ public class Token {
   }
 
   public String toString() {
-    String tname = ListLexer.tokenNames[type];
+    String tname = LookaheadLexer.tokenNames[type];
     return "<'" + text + "', " + tname + ">";
   }
 }

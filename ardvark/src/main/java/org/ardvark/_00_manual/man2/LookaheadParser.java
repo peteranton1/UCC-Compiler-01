@@ -1,4 +1,4 @@
-package org.ardvark.man2;
+package org.ardvark._00_manual.man2;
 
 public class LookaheadParser extends Parser {
 

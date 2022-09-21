@@ -1,6 +1,4 @@
-package org.ardvark.man3;
-
-import org.ardvark.man2.LookaheadLexer;
+package org.ardvark._00_manual.man3;
 
 public class BacktrackParser extends Parser {
 
@@ -19,37 +17,37 @@ public class BacktrackParser extends Parser {
   }
 
   public void list() {
-    match(LookaheadLexer.LBRACK);
+    match(BacktrackLexer.LBRACK);
     elements();
-    match(LookaheadLexer.RBRACK);
+    match(BacktrackLexer.RBRACK);
   }
 
   public void assign() {
     list();
-    match(LookaheadLexer.EQUALS);
+    match(BacktrackLexer.EQUALS);
     list();
   }
 
   public void elements() {
     element();
-    while (LA(1) == LookaheadLexer.COMMA) {
-      match(LookaheadLexer.COMMA);
+    while (LA(1) == BacktrackLexer.COMMA) {
+      match(BacktrackLexer.COMMA);
       element();
     }
   }
 
   public void element() {
-    if (LA(1) == LookaheadLexer.NAME &&
-        LA(2) == LookaheadLexer.EQUALS) {
-      match(LookaheadLexer.NAME);
-      match(LookaheadLexer.EQUALS);
-      match(LookaheadLexer.NUMBER);
+    if (LA(1) == BacktrackLexer.NAME &&
+        LA(2) == BacktrackLexer.EQUALS) {
+      match(BacktrackLexer.NAME);
+      match(BacktrackLexer.EQUALS);
+      match(BacktrackLexer.NUMBER);
     }
-    else if (LA(1) == LookaheadLexer.NAME)
-      match(LookaheadLexer.NAME);
-    else if (LA(1) == LookaheadLexer.NUMBER)
-      match(LookaheadLexer.NUMBER);
-    else if (LA(1) == LookaheadLexer.LBRACK)
+    else if (LA(1) == BacktrackLexer.NAME)
+      match(BacktrackLexer.NAME);
+    else if (LA(1) == BacktrackLexer.NUMBER)
+      match(BacktrackLexer.NUMBER);
+    else if (LA(1) == BacktrackLexer.LBRACK)
       list();
     else
       throw new Error("expecting name, name=number, " +

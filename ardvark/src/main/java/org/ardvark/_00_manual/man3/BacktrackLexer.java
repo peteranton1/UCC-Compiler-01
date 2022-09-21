@@ -1,21 +1,23 @@
-package org.ardvark.man1;
+package org.ardvark._00_manual.man3;
 
-public class ListLexer extends Lexer {
+public class BacktrackLexer extends Lexer {
+
   public static int NAME = 2;
   public static int NUMBER = 3;
-  public static int COMMA = 4;
-  public static int LBRACK = 5;
-  public static int RBRACK = 6;
+  public static final int EQUALS = 4;
+  public static int COMMA = 5;
+  public static int LBRACK = 6;
+  public static int RBRACK = 7;
   public static String[] tokenNames =
-      {"n/a", "<EOF>", "NAME", "NUMBER", "COMMA", "LBRACK", "RBRACK"};
+      {"n/a", "<EOF>", "NAME", "NUMBER", "EQUALS", "COMMA", "LBRACK", "RBRACK"};
+
+  public BacktrackLexer(String input) {
+    super(input);
+  }
 
   @Override
   public String getTokenName(int tokenType) {
     return tokenNames[tokenType];
-  }
-
-  public ListLexer(String input) {
-    super(input);
   }
 
   public boolean isLETTER() {
@@ -34,6 +36,10 @@ public class ListLexer extends Lexer {
         case ',' -> {
           consume();
           return new Token(COMMA, ",");
+        }
+        case '=' -> {
+          consume();
+          return new Token(EQUALS, "=");
         }
         case '[' -> {
           consume();

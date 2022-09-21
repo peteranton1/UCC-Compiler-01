@@ -1,4 +1,4 @@
-package org.ardvark.man3;
+package org.ardvark._00_manual.man3;
 
 public abstract class Lexer {
   public static final char EOF = (char) -1;

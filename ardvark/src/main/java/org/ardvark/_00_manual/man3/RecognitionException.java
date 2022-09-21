@@ -1,4 +1,4 @@
-package org.ardvark.man3;
+package org.ardvark._00_manual .man3;
 
 public class RecognitionException extends RuntimeException {
   public RecognitionException() {

@@ -1,4 +1,4 @@
-package org.ardvark.man3;
+package org.ardvark._00_manual.man3;
 
 import org.junit.jupiter.api.Test;
 

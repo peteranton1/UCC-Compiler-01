@@ -1,4 +1,4 @@
-package org.ardvark.man1;
+package org.ardvark._00_manual.man1;
 
 public class ListParser extends Parser {
   public ListParser(Lexer input) {
