@@ -29,7 +29,10 @@ dependencies {
 
 generateGrammarSource {
     maxHeapSize = "128m"
-    arguments += ['-package', 'me.tomassetti.examples.MarkupParser', '-visitor', '-no-listener']
+    arguments += ['-package',
+                  'org.ardvark',
+                  '-no-visitor',
+                  '-no-listener']
 }
 compileJava.dependsOn generateGrammarSource
 sourceSets {
