@@ -3,6 +3,8 @@ package org.ardvark._01_manual;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.ardvark.VecMathASTLexer;
+import org.ardvark.VecMathASTParser;
 import org.ardvark.VecMathLexer;
 import org.ardvark.VecMathParser;
 import org.junit.jupiter.api.Test;
@@ -14,20 +16,21 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class VecMathTest extends TestBase {
+public class VecMathASTTest extends TestBase {
 
   @Test
-  void shouldParserInputOk() throws IOException {
+  void shouldParserVisitorInputOk() throws IOException {
     Path path = Paths.get(BASE_PATH, "vecmath-testdata.txt");
     CharStream input = CharStreams.fromPath(path);
-    VecMathLexer lexer = new VecMathLexer(input);
+    VecMathASTLexer lexer = new VecMathASTLexer(input);
     CommonTokenStream tokens = new CommonTokenStream(lexer);
-    VecMathParser parser = new VecMathParser(tokens);
+    VecMathASTParser parser = new VecMathASTParser(tokens);
 
-    VecMathParser.StatlistContext result = parser.statlist();
-    // Unless there is an error strategy,
-    // will always be successful.
+    VecMathASTParser.StatlistContext result = parser.statlist();
     assertNotNull(result);
     assertNull(result.exception);
+
+    VecMathASTPrintVisitor visitor = new VecMathASTPrintVisitor();
+    visitor.visit(result);
   }
 }

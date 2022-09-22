@@ -31,8 +31,8 @@ generateGrammarSource {
     maxHeapSize = "128m"
     arguments += ['-package',
                   'org.ardvark',
-                  '-no-visitor',
-                  '-no-listener']
+                  '-visitor',
+                  '-listener']
 }
 compileJava.dependsOn generateGrammarSource
 sourceSets {

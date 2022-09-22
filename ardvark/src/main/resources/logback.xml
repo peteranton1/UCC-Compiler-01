@@ -5,7 +5,9 @@
         </encoder>
     </appender>
 
-    <root level="debug">
+    <root level="error">
         <appender-ref ref="STDOUT" />
     </root>
+    <logger name="ch.qos.logback" level="WARN" />
+    <logger name="org.ardvark" level="INFO" />
 </configuration>
