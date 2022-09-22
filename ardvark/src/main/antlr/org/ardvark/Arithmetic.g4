@@ -4,18 +4,47 @@
 
 grammar Arithmetic;
 
-file_ : equation* EOF;
+file_ : (equation NEWLINE)* ;
 
 equation
+   : expression
+   | assignment
+   ;
+
+assignment
    : expression relop expression
    ;
 
 expression
-   :  expression  POW expression
-   |  expression  (TIMES | DIV)  expression
-   |  expression  (PLUS | MINUS) expression
-   |  LPAREN expression RPAREN
-   |  (PLUS | MINUS)* atom
+   :  expression  pow expression
+   |  expression  muldiv  expression
+   |  expression  plusminus expression
+   |  lparen expression rparen
+   |  unary atom
+   ;
+
+pow
+   : POW
+   ;
+
+muldiv
+   : (TIMES | DIV)
+   ;
+
+plusminus
+   : (PLUS | MINUS)
+   ;
+
+unary
+   : (PLUS | MINUS)?
+   ;
+
+lparen
+   : LPAREN
+   ;
+
+rparen
+   : RPAREN
    ;
 
 atom
@@ -130,7 +159,10 @@ POW
    : '^'
    ;
 
+NEWLINE
+   : [\r\n]+
+   ;
 
 WS
-   : [ \r\n\t] + -> skip
+   : [ \t] + -> skip
    ;
