@@ -17,8 +17,8 @@ assignment
 
 expression
    :  expression  pow expression
-   |  expression  muldiv  expression
    |  expression  plusminus expression
+   |  expression  muldiv  expression
    |  lparen expression rparen
    |  unary atom
    ;

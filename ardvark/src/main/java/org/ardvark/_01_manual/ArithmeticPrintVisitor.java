@@ -21,7 +21,7 @@ public class ArithmeticPrintVisitor extends ArithmeticBaseVisitor<String> {
     return "\\n" + PAD.repeat(Math.max(0, level));
   }
 
-  public void printNode(ParserRuleContext ctx, int level, TerminalNode node) {
+  public void printNode(int level, TerminalNode node) {
     if(null != node) {
       String msg = String.format("%s : '%s' ", indent(level), getText(node));
       System.out.println(msg);
@@ -58,40 +58,40 @@ public class ArithmeticPrintVisitor extends ArithmeticBaseVisitor<String> {
 
   @Override
   public String visitPow(ArithmeticParser.PowContext ctx) {
-    printNode(ctx, L5, ctx.POW());
+//    printNode(L5, ctx.POW());
     return super.visitPow(ctx);
   }
 
   @Override
   public String visitMuldiv(ArithmeticParser.MuldivContext ctx) {
-    printNode(ctx, L5, ctx.TIMES());
-    printNode(ctx, L5, ctx.DIV());
+//    printNode(L5, ctx.TIMES());
+//    printNode(L5, ctx.DIV());
     return super.visitMuldiv(ctx);
   }
 
   @Override
   public String visitPlusminus(ArithmeticParser.PlusminusContext ctx) {
-    printNode(ctx, L5, ctx.PLUS());
-    printNode(ctx, L5, ctx.MINUS());
+//    printNode(L5, ctx.PLUS());
+//    printNode(L5, ctx.MINUS());
     return super.visitPlusminus(ctx);
   }
 
   @Override
   public String visitUnary(ArithmeticParser.UnaryContext ctx) {
-    printNode(ctx, L5, ctx.PLUS());
-    printNode(ctx, L5, ctx.MINUS());
+//    printNode(L5, ctx.PLUS());
+//    printNode(L5, ctx.MINUS());
     return super.visitUnary(ctx);
   }
 
   @Override
   public String visitLparen(ArithmeticParser.LparenContext ctx) {
-    printNode(ctx, L5, ctx.LPAREN());
+//    printNode(L5, ctx.LPAREN());
     return super.visitLparen(ctx);
   }
 
   @Override
   public String visitRparen(ArithmeticParser.RparenContext ctx) {
-    printNode(ctx, L5, ctx.RPAREN());
+//    printNode(L5, ctx.RPAREN());
     return super.visitRparen(ctx);
   }
 
@@ -102,22 +102,28 @@ public class ArithmeticPrintVisitor extends ArithmeticBaseVisitor<String> {
 
   @Override
   public String visitScientific(ArithmeticParser.ScientificContext ctx) {
-    printNode(ctx, L5, ctx.SCIENTIFIC_NUMBER());
+//    printNode(L5, ctx.SCIENTIFIC_NUMBER());
     return super.visitScientific(ctx);
   }
 
   @Override
   public String visitVariable(ArithmeticParser.VariableContext ctx) {
-    printNode(ctx, L5, ctx.VARIABLE());
+//    printNode(L5, ctx.VARIABLE());
     return super.visitVariable(ctx);
   }
 
   @Override
   public String visitRelop(ArithmeticParser.RelopContext ctx) {
-    System.out.println("visitRelop");
-    printNode(ctx, L5, ctx.EQ());
-    printNode(ctx, L5, ctx.GT());
-    printNode(ctx, L5, ctx.LT());
+//    System.out.println("visitRelop");
+//    printNode(L5, ctx.EQ());
+//    printNode(L5, ctx.GT());
+//    printNode(L5, ctx.LT());
     return super.visitRelop(ctx);
+  }
+
+  @Override
+  public String visitTerminal(TerminalNode node) {
+    printNode(L3, node);
+    return super.visitTerminal(node);
   }
 }
