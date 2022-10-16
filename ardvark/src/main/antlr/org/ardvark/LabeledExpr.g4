@@ -13,9 +13,7 @@ printExpr:  expr newline ;
 assign:     id eq expr newline ;
 blank:      newline ;
 
-expr:    factor ;
-
-factor:  product (opAS product)* ;
+expr:    product (opAS product)* ;
 product: term (opMD term)* ;
 term:    number
      |   id

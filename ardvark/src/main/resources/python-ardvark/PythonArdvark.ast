@@ -1,0 +1,152 @@
+(file_input
+  (stmt
+    (simple_stmt
+      (small_stmt
+        (import_stmt
+          (import_name import
+            (dotted_as_names
+              (dotted_as_name
+                (dotted_name style)))))) \n
+              ))
+  (stmt
+    (simple_stmt
+      (small_stmt
+        (expr_stmt
+          (testlist_star_expr
+            (test
+              (or_test
+                (and_test
+                  (not_test
+                    (comparison
+                      (star_expr
+                        (expr
+                          (xor_expr
+                            (and_expr
+                              (shift_expr
+                                (arith_expr
+                                  (term
+                                    (factor
+                                      (power
+                                        (atom survey))))))))))))))))
+  = (testlist_star_expr
+      (test
+        (or_test
+          (and_test
+            (not_test
+              (comparison
+                (star_expr
+                  (expr
+                    (xor_expr
+                      (and_expr
+                        (shift_expr
+                          (arith_expr
+                            (term
+                              (factor
+                                (power
+  (atom (str "Eagle Surveys J123456")))))))))))))))))))
+                                 \n))
+\n \n
+  (stmt
+    (compound_stmt
+      (classdef class Q1
+        ( (arglist
+          (argument
+            (test
+              (or_test
+                (and_test
+                  (not_test
+                    (comparison
+                      (star_expr
+                        (expr
+                          (xor_expr
+                            (and_expr
+                              (shift_expr
+                                (arith_expr
+                                  (term
+                                    (factor
+                                      (power
+                                        (atom style)
+                                        (trailer . Question))))))))))))))))) ) :
+  (suite
+    (simple_stmt
+      (small_stmt
+        (expr_stmt
+          (testlist_star_expr
+            (test
+              (or_test
+                (and_test
+                  (not_test
+                    (comparison
+                      (star_expr
+                        (expr
+                          (xor_expr
+                            (and_expr
+                              (shift_expr
+                                (arith_expr
+                                  (term
+                                    (factor
+                                      (power
+                                        (atom single))))))))))))))))))
+                                        \n
+                                        )))))
+  (stmt
+    (simple_stmt
+      (small_stmt
+        (expr_stmt
+          (testlist_star_expr
+            (test
+              (or_test
+                (and_test
+                  (not_test
+                    (comparison
+                      (star_expr
+                        (expr
+                          (xor_expr
+                            (and_expr
+                              (shift_expr
+                                (arith_expr
+                                  (term
+                                    (factor
+                                      (power
+                                        (atom
+                                          (str """A question definition""")))))))))))))))))))
+                                          \n
+                                        ))
+  (stmt
+    (simple_stmt
+      (small_stmt
+        (expr_stmt
+          (testlist_star_expr
+            (test
+              (or_test
+                (and_test
+                  (not_test
+                    (comparison
+                      (star_expr
+                        (expr
+                          (xor_expr
+                            (and_expr
+                              (shift_expr
+                                (arith_expr
+                                  (term
+                                    (factor
+                                      (power
+                                        (atom qt))))))))))))))))
+  = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power
+  (atom (str "A single choice Question")))))))))))))))))))
+  \n  ))
+  (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power
+  (atom al))))))))))))))))
+  = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power
+  (atom [
+    (testlist_comp (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power
+    (atom yes))))))))))))))) ,
+    (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power
+    (atom no))))))))))))))) ,
+    (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power
+    (atom maybe))))))))))))))) ,
+    (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power
+    (atom dkna))))))))))))))))
+  ]))))))))))))))))))
+  \n  ))
+  (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom yes)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom { (dictorsetmaker (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom data))))))))))))))) : (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Y")))))))))))))))) , (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom text))))))))))))))) : (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Yes"))))))))))))))))) })))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom no)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "No"))))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom maybe)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Maybe"))))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom dkna)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom { (dictorsetmaker (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom options))))))))))))))) : (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom [ (testlist_comp (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom single))))))))))))))) , (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom default)))))))))))))))) ]))))))))))))))) , (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom text))))))))))))))) : (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Dk/Na"))))))))))))))))) })))))))))))))))))) \n)) \n (stmt (compound_stmt (classdef class Q1yes ( (arglist (argument (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom style) (trailer . Question))))))))))))))))) ) : (suite \n   <missing INDENT> (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str """A question"""))))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom qn)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom single)))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom qt)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Some other question"))))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom al)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom q1) (trailer . al)))))))))))))))))) \n)) (stmt \n) (stmt (compound_stmt (classdef class Q1no ( (arglist (argument (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom style) (trailer . Question))))))))))))))))) ) : (suite \n   <missing INDENT> (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str """A question"""))))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom qn)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom single)))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom qt)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Some other question"))))))))))))))))))) \n  )) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom al)))))))))))))))) = (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom q1) (trailer . al)))))))))))))))))) \n)) (stmt \n \n \n \n) (stmt (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom present) (trailer ( (arglist (argument (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom Q1))))))))))))))))) ))))))))))))))))))) \n)) (stmt \n) (stmt (compound_stmt (if_stmt if (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom x)))))))))) (comp_op ==) (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Q1(no|maybe|dkna)")))))))))))))))) : (suite (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom Q1) (trailer ( (arglist (argument (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom dkna))))))))))))))))) ))))))))))))))))))) \n))))) (stmt (compound_stmt (if_stmt if (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom x)))))))))) (comp_op ==) (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom (str "Q1(no|maybe|dkna)")))))))))))))))) : (suite (simple_stmt (small_stmt (expr_stmt (testlist_star_expr (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom Q1) (trailer ( (arglist (argument (test (or_test (and_test (not_test (comparison (star_expr (expr (xor_expr (and_expr (shift_expr (arith_expr (term (factor (power (atom dkna))))))))))))))))) ))))))))))))))))))) \n))))) (stmt \n \n \n \n \n \n \n))))) <missing DEDENT>)))) <EOF>)

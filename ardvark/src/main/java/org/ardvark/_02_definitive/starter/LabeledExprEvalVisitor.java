@@ -7,7 +7,6 @@ import org.ardvark.LabeledExprParser;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LabeledExprEvalVisitor
@@ -83,22 +82,6 @@ public class LabeledExprEvalVisitor
       TerminalNode mul = ctx.opMD().get(i - 1).MUL();
       if (mul != null) left = left.multiply(right);
       else left = left.divide(right, RoundingMode.HALF_UP); // must be DIV
-    }
-    return left;
-  }
-
-  /**
-   * factor:  term (opAS term)* ;
-   */
-  @Override
-  public BigDecimal visitFactor(LabeledExprParser.FactorContext ctx) {
-    BigDecimal left = visit(ctx.product(0)); // get value of left subexpression
-    for (int i = 1; i < ctx.product().size(); i++) {
-      BigDecimal right = visit(ctx.product(i)); // get value of right subexpression
-      List<LabeledExprParser.OpASContext> opASContexts = ctx.opAS();
-      TerminalNode add = opASContexts.get(i - 1).ADD();
-      if (add != null) left = left.add(right);
-      else left = left.subtract(right); // must be SUB
     }
     return left;
   }

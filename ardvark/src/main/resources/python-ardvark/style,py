@@ -1,0 +1,26 @@
+module style
+
+# define constants
+
+default = "default"
+name = "name"
+options = "options"
+single = "single"
+
+class Question:
+  def __init__(self):
+    pass
+  def on_entry(self):
+    perform(Hello)
+  def on_exit(self):
+    perform(Goodbye)
+
+class Hello(Question):
+  qt f"Survey {survey}\n\n" \
+     f"Hello welcome to a few questions."
+  al = ["Press any key to continue"]
+
+class Goodbye(Question):
+  qt f"Survey {survey}\n\n" \
+     f"Thanks for everything."
+  al = ["Press any key to continue"]

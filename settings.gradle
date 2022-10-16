@@ -9,4 +9,5 @@
 
 rootProject.name = 'ucc.compiler'
 include 'ardvark'
+include 'python3'
 

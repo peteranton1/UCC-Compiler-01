@@ -1,0 +1,62 @@
+package daily;
+
+import style;
+
+// useful for header of screen
+j123456: header
+ qt "Eagle Surveys J123456" ;
+
+/*
+ * A question definition
+ */
+q1:Var = {
+  Doc = """A question definition"""
+  Qt = "A single choice Question"
+  Al = {
+      yes: Ans = {"Y", "Yes"}
+      no: Ans = {"N", "No"}
+      maybe: Ans = {"M", "Maybe"}
+      dkna: Ans = { options : [single, default], text: "Dk/Na"}
+  }
+}
+
+q1 : {
+  Doc: "A question definition",
+  Qt: "A single choice Question",
+  Qt: "DO NOT PROMPT",
+  Al: {
+    Y: "Yes",
+    N: "No, not really",
+    M: "Maybe"
+  },
+  Ans: {
+    X: "Dk/Na",
+    options: {single, default}
+  }
+}
+
+class Q1yes(style.Question) :
+  """A question"""
+  qn = single
+  qt = "Some other question"
+  al = q1.al
+
+class Q1no(style.Question):
+  """A question"""
+  qn = single
+  qt = "Some other question"
+  al = q1.al
+
+# -------------------------
+# Script starts here
+#
+present(Q1)
+
+if x == "Q1(no|maybe|dkna)" :
+  compute(Q1(dkna))
+if x == "Q1(no|maybe|dkna)" :
+  compute(Q1(dkna))
+
+#
+# Script ends here
+# -------------------------

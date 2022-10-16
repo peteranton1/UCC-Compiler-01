@@ -1,0 +1,1259 @@
+'- file_input
+   |- stmt
+   |  '- simple_stmt
+   |     |- small_stmt
+   |     |  '- import_stmt
+   |     |     '- import_from
+   |     |        |- from
+   |     |        |- dotted_name
+   |     |        |  '- Style
+   |     |        |- import
+   |     |        '- *
+   |     '- <NEWLINE>
+   |- stmt
+   |  '- simple_stmt
+   |     |- small_stmt
+   |     |  '- expr_stmt
+   |     |     |- testlist_star_expr
+   |     |     |  '- test
+   |     |     |     '- or_test
+   |     |     |        '- and_test
+   |     |     |           '- not_test
+   |     |     |              '- comparison
+   |     |     |                 '- star_expr
+   |     |     |                    '- expr
+   |     |     |                       '- xor_expr
+   |     |     |                          '- and_expr
+   |     |     |                             '- shift_expr
+   |     |     |                                '- arith_expr
+   |     |     |                                   '- term
+   |     |     |                                      '- factor
+   |     |     |                                         '- power
+   |     |     |                                            '- atom
+   |     |     |                                               '- survey
+   |     |     |- =
+   |     |     '- testlist_star_expr
+   |     |        '- test
+   |     |           '- or_test
+   |     |              '- and_test
+   |     |                 '- not_test
+   |     |                    '- comparison
+   |     |                       '- star_expr
+   |     |                          '- expr
+   |     |                             '- xor_expr
+   |     |                                '- and_expr
+   |     |                                   '- shift_expr
+   |     |                                      '- arith_expr
+   |     |                                         '- term
+   |     |                                            '- factor
+   |     |                                               '- power
+   |     |                                                  '- atom
+   |     |                                                     |- {
+   |     |                                                     |- dictorsetmaker
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            '- doc
+   |     |                                                     |  |- :
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            '- str
+   |     |                                                     |  |                                               '- "Eagle Surveys J123456"
+   |     |                                                     |  |- ,
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            '- str
+   |     |                                                     |  |                                               '- "q1"
+   |     |                                                     |  |- :
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            |- {
+   |     |                                                     |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- qt
+   |     |                                                     |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                               '- "A single choice Question"
+   |     |                                                     |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- al
+   |     |                                                     |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |- {
+   |     |                                                     |  |                                            |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                               '- "yes"
+   |     |                                                     |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- {
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                               '- "Y"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  '- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |     '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |        '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |           '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |              '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                 '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                    '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                       '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                          '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                             '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                   '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                      '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                         '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                            '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                                  '- "Yes"
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- }
+   |     |                                                     |  |                                            |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                               '- "no"
+   |     |                                                     |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- {
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                               '- "N"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  '- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |     '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |        '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |           '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |              '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                 '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                    '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                       '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                          '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                             '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                   '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                      '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                         '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                            '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                                  '- "No"
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- }
+   |     |                                                     |  |                                            |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                               '- "maybe"
+   |     |                                                     |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- {
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                               '- "M"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  '- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |     '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |        '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |           '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |              '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                 '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                    '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                       '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                          '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                             '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                   '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                      '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                         '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                            '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                                  '- "Maybe"
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- }
+   |     |                                                     |  |                                            |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                               '- "dkna"
+   |     |                                                     |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- {
+   |     |                                                     |  |                                            |  |                                            |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                               '- "D"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                               '- "Dk/Na"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |                                               '- "options"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |                                            |  |                                            |  '- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |     '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |        '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |           '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |              '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                 '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                    '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                       '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                          '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                             '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                   '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                      '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                         '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                            '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |- [
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |- testlist_comp
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |  '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |     '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |        '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |           '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                 '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                                '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |                                               '- "single"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  |- ,
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |  '- test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |     '- or_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |        '- and_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |           '- not_test
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |              '- comparison
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                 '- star_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                    '- expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                       '- xor_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                          '- and_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                             '- shift_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                                '- arith_expr
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                                   '- term
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                                      '- factor
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                                         '- power
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                                            '- atom
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                                               '- str
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               |                                                  '- "default"
+   |     |                                                     |  |                                            |  |                                            |  |                                            |                                               '- ]
+   |     |                                                     |  |                                            |  |                                            |  |                                            '- }
+   |     |                                                     |  |                                            |  |                                            |  '- ,
+   |     |                                                     |  |                                            |  |                                            '- }
+   |     |                                                     |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- options
+   |     |                                                     |  |                                            |  |- :
+   |     |                                                     |  |                                            |  '- test
+   |     |                                                     |  |                                            |     '- or_test
+   |     |                                                     |  |                                            |        '- and_test
+   |     |                                                     |  |                                            |           '- not_test
+   |     |                                                     |  |                                            |              '- comparison
+   |     |                                                     |  |                                            |                 '- star_expr
+   |     |                                                     |  |                                            |                    '- expr
+   |     |                                                     |  |                                            |                       '- xor_expr
+   |     |                                                     |  |                                            |                          '- and_expr
+   |     |                                                     |  |                                            |                             '- shift_expr
+   |     |                                                     |  |                                            |                                '- arith_expr
+   |     |                                                     |  |                                            |                                   '- term
+   |     |                                                     |  |                                            |                                      '- factor
+   |     |                                                     |  |                                            |                                         '- power
+   |     |                                                     |  |                                            |                                            '- atom
+   |     |                                                     |  |                                            |                                               |- [
+   |     |                                                     |  |                                            |                                               |- testlist_comp
+   |     |                                                     |  |                                            |                                               |  '- test
+   |     |                                                     |  |                                            |                                               |     '- or_test
+   |     |                                                     |  |                                            |                                               |        '- and_test
+   |     |                                                     |  |                                            |                                               |           '- not_test
+   |     |                                                     |  |                                            |                                               |              '- comparison
+   |     |                                                     |  |                                            |                                               |                 '- star_expr
+   |     |                                                     |  |                                            |                                               |                    '- expr
+   |     |                                                     |  |                                            |                                               |                       '- xor_expr
+   |     |                                                     |  |                                            |                                               |                          '- and_expr
+   |     |                                                     |  |                                            |                                               |                             '- shift_expr
+   |     |                                                     |  |                                            |                                               |                                '- arith_expr
+   |     |                                                     |  |                                            |                                               |                                   '- term
+   |     |                                                     |  |                                            |                                               |                                      '- factor
+   |     |                                                     |  |                                            |                                               |                                         '- power
+   |     |                                                     |  |                                            |                                               |                                            '- atom
+   |     |                                                     |  |                                            |                                               |                                               '- str
+   |     |                                                     |  |                                            |                                               |                                                  '- "single"
+   |     |                                                     |  |                                            |                                               '- ]
+   |     |                                                     |  |                                            '- }
+   |     |                                                     |  |- ,
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            '- str
+   |     |                                                     |  |                                               '- "Q1yes"
+   |     |                                                     |  |- :
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            |- {
+   |     |                                                     |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- qt
+   |     |                                                     |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                               '- "Some other question"
+   |     |                                                     |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- al
+   |     |                                                     |  |                                            |  |- :
+   |     |                                                     |  |                                            |  '- test
+   |     |                                                     |  |                                            |     '- or_test
+   |     |                                                     |  |                                            |        '- and_test
+   |     |                                                     |  |                                            |           '- not_test
+   |     |                                                     |  |                                            |              '- comparison
+   |     |                                                     |  |                                            |                 '- star_expr
+   |     |                                                     |  |                                            |                    '- expr
+   |     |                                                     |  |                                            |                       '- xor_expr
+   |     |                                                     |  |                                            |                          '- and_expr
+   |     |                                                     |  |                                            |                             '- shift_expr
+   |     |                                                     |  |                                            |                                '- arith_expr
+   |     |                                                     |  |                                            |                                   '- term
+   |     |                                                     |  |                                            |                                      '- factor
+   |     |                                                     |  |                                            |                                         '- power
+   |     |                                                     |  |                                            |                                            |- atom
+   |     |                                                     |  |                                            |                                            |  '- q1
+   |     |                                                     |  |                                            |                                            '- trailer
+   |     |                                                     |  |                                            |                                               |- .
+   |     |                                                     |  |                                            |                                               '- al
+   |     |                                                     |  |                                            '- }
+   |     |                                                     |  |- ,
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            '- str
+   |     |                                                     |  |                                               '- "Q1no"
+   |     |                                                     |  |- :
+   |     |                                                     |  |- test
+   |     |                                                     |  |  '- or_test
+   |     |                                                     |  |     '- and_test
+   |     |                                                     |  |        '- not_test
+   |     |                                                     |  |           '- comparison
+   |     |                                                     |  |              '- star_expr
+   |     |                                                     |  |                 '- expr
+   |     |                                                     |  |                    '- xor_expr
+   |     |                                                     |  |                       '- and_expr
+   |     |                                                     |  |                          '- shift_expr
+   |     |                                                     |  |                             '- arith_expr
+   |     |                                                     |  |                                '- term
+   |     |                                                     |  |                                   '- factor
+   |     |                                                     |  |                                      '- power
+   |     |                                                     |  |                                         '- atom
+   |     |                                                     |  |                                            |- {
+   |     |                                                     |  |                                            |- dictorsetmaker
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- qt
+   |     |                                                     |  |                                            |  |- :
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- str
+   |     |                                                     |  |                                            |  |                                               '- "Some other question"
+   |     |                                                     |  |                                            |  |- ,
+   |     |                                                     |  |                                            |  |- test
+   |     |                                                     |  |                                            |  |  '- or_test
+   |     |                                                     |  |                                            |  |     '- and_test
+   |     |                                                     |  |                                            |  |        '- not_test
+   |     |                                                     |  |                                            |  |           '- comparison
+   |     |                                                     |  |                                            |  |              '- star_expr
+   |     |                                                     |  |                                            |  |                 '- expr
+   |     |                                                     |  |                                            |  |                    '- xor_expr
+   |     |                                                     |  |                                            |  |                       '- and_expr
+   |     |                                                     |  |                                            |  |                          '- shift_expr
+   |     |                                                     |  |                                            |  |                             '- arith_expr
+   |     |                                                     |  |                                            |  |                                '- term
+   |     |                                                     |  |                                            |  |                                   '- factor
+   |     |                                                     |  |                                            |  |                                      '- power
+   |     |                                                     |  |                                            |  |                                         '- atom
+   |     |                                                     |  |                                            |  |                                            '- al
+   |     |                                                     |  |                                            |  |- :
+   |     |                                                     |  |                                            |  '- test
+   |     |                                                     |  |                                            |     '- or_test
+   |     |                                                     |  |                                            |        '- and_test
+   |     |                                                     |  |                                            |           '- not_test
+   |     |                                                     |  |                                            |              '- comparison
+   |     |                                                     |  |                                            |                 '- star_expr
+   |     |                                                     |  |                                            |                    '- expr
+   |     |                                                     |  |                                            |                       '- xor_expr
+   |     |                                                     |  |                                            |                          '- and_expr
+   |     |                                                     |  |                                            |                             '- shift_expr
+   |     |                                                     |  |                                            |                                '- arith_expr
+   |     |                                                     |  |                                            |                                   '- term
+   |     |                                                     |  |                                            |                                      '- factor
+   |     |                                                     |  |                                            |                                         '- power
+   |     |                                                     |  |                                            |                                            |- atom
+   |     |                                                     |  |                                            |                                            |  '- q1
+   |     |                                                     |  |                                            |                                            '- trailer
+   |     |                                                     |  |                                            |                                               |- .
+   |     |                                                     |  |                                            |                                               '- al
+   |     |                                                     |  |                                            '- }
+   |     |                                                     |  '- ,
+   |     |                                                     '- }
+   |     '- <NEWLINE>
+   |- stmt
+   |  '- compound_stmt
+   |     '- funcdef
+   |        |- def
+   |        |- script
+   |        |- parameters
+   |        |  |- (
+   |        |  '- )
+   |        |- :
+   |        '- suite
+   |           |- <NEWLINE>
+   |           |- <INDENT>
+   |           |- stmt
+   |           |  '- simple_stmt
+   |           |     |- small_stmt
+   |           |     |  '- expr_stmt
+   |           |     |     |- testlist_star_expr
+   |           |     |     |  '- test
+   |           |     |     |     '- or_test
+   |           |     |     |        '- and_test
+   |           |     |     |           '- not_test
+   |           |     |     |              '- comparison
+   |           |     |     |                 '- star_expr
+   |           |     |     |                    '- expr
+   |           |     |     |                       '- xor_expr
+   |           |     |     |                          '- and_expr
+   |           |     |     |                             '- shift_expr
+   |           |     |     |                                '- arith_expr
+   |           |     |     |                                   '- term
+   |           |     |     |                                      '- factor
+   |           |     |     |                                         '- power
+   |           |     |     |                                            '- atom
+   |           |     |     |                                               '- data
+   |           |     |     |- =
+   |           |     |     '- testlist_star_expr
+   |           |     |        '- test
+   |           |     |           '- or_test
+   |           |     |              '- and_test
+   |           |     |                 '- not_test
+   |           |     |                    '- comparison
+   |           |     |                       '- star_expr
+   |           |     |                          '- expr
+   |           |     |                             '- xor_expr
+   |           |     |                                '- and_expr
+   |           |     |                                   '- shift_expr
+   |           |     |                                      '- arith_expr
+   |           |     |                                         '- term
+   |           |     |                                            '- factor
+   |           |     |                                               '- power
+   |           |     |                                                  '- atom
+   |           |     |                                                     '- survey
+   |           |     '- <NEWLINE>
+   |           |- stmt
+   |           |  '- simple_stmt
+   |           |     |- small_stmt
+   |           |     |  '- expr_stmt
+   |           |     |     '- testlist_star_expr
+   |           |     |        '- test
+   |           |     |           '- or_test
+   |           |     |              '- and_test
+   |           |     |                 '- not_test
+   |           |     |                    '- comparison
+   |           |     |                       '- star_expr
+   |           |     |                          '- expr
+   |           |     |                             '- xor_expr
+   |           |     |                                '- and_expr
+   |           |     |                                   '- shift_expr
+   |           |     |                                      '- arith_expr
+   |           |     |                                         '- term
+   |           |     |                                            '- factor
+   |           |     |                                               '- power
+   |           |     |                                                  |- atom
+   |           |     |                                                  |  '- present
+   |           |     |                                                  '- trailer
+   |           |     |                                                     |- (
+   |           |     |                                                     |- arglist
+   |           |     |                                                     |  '- argument
+   |           |     |                                                     |     '- test
+   |           |     |                                                     |        '- or_test
+   |           |     |                                                     |           '- and_test
+   |           |     |                                                     |              '- not_test
+   |           |     |                                                     |                 '- comparison
+   |           |     |                                                     |                    '- star_expr
+   |           |     |                                                     |                       '- expr
+   |           |     |                                                     |                          '- xor_expr
+   |           |     |                                                     |                             '- and_expr
+   |           |     |                                                     |                                '- shift_expr
+   |           |     |                                                     |                                   '- arith_expr
+   |           |     |                                                     |                                      '- term
+   |           |     |                                                     |                                         '- factor
+   |           |     |                                                     |                                            '- power
+   |           |     |                                                     |                                               |- atom
+   |           |     |                                                     |                                               |  '- data
+   |           |     |                                                     |                                               '- trailer
+   |           |     |                                                     |                                                  |- .
+   |           |     |                                                     |                                                  '- Q1
+   |           |     |                                                     '- )
+   |           |     '- <NEWLINE>
+   |           |- stmt
+   |           |  '- compound_stmt
+   |           |     '- if_stmt
+   |           |        |- if
+   |           |        |- test
+   |           |        |  '- or_test
+   |           |        |     '- and_test
+   |           |        |        '- not_test
+   |           |        |           '- comparison
+   |           |        |              '- star_expr
+   |           |        |                 '- expr
+   |           |        |                    '- xor_expr
+   |           |        |                       '- and_expr
+   |           |        |                          '- shift_expr
+   |           |        |                             '- arith_expr
+   |           |        |                                '- term
+   |           |        |                                   '- factor
+   |           |        |                                      '- power
+   |           |        |                                         |- atom
+   |           |        |                                         |  '- test
+   |           |        |                                         '- trailer
+   |           |        |                                            |- (
+   |           |        |                                            |- arglist
+   |           |        |                                            |  |- argument
+   |           |        |                                            |  |  '- test
+   |           |        |                                            |  |     '- or_test
+   |           |        |                                            |  |        '- and_test
+   |           |        |                                            |  |           '- not_test
+   |           |        |                                            |  |              '- comparison
+   |           |        |                                            |  |                 '- star_expr
+   |           |        |                                            |  |                    '- expr
+   |           |        |                                            |  |                       '- xor_expr
+   |           |        |                                            |  |                          '- and_expr
+   |           |        |                                            |  |                             '- shift_expr
+   |           |        |                                            |  |                                '- arith_expr
+   |           |        |                                            |  |                                   '- term
+   |           |        |                                            |  |                                      '- factor
+   |           |        |                                            |  |                                         '- power
+   |           |        |                                            |  |                                            |- atom
+   |           |        |                                            |  |                                            |  '- data
+   |           |        |                                            |  |                                            '- trailer
+   |           |        |                                            |  |                                               |- .
+   |           |        |                                            |  |                                               '- Q1
+   |           |        |                                            |  |- ,
+   |           |        |                                            |  '- argument
+   |           |        |                                            |     '- test
+   |           |        |                                            |        '- or_test
+   |           |        |                                            |           '- and_test
+   |           |        |                                            |              '- not_test
+   |           |        |                                            |                 '- comparison
+   |           |        |                                            |                    '- star_expr
+   |           |        |                                            |                       '- expr
+   |           |        |                                            |                          '- xor_expr
+   |           |        |                                            |                             '- and_expr
+   |           |        |                                            |                                '- shift_expr
+   |           |        |                                            |                                   '- arith_expr
+   |           |        |                                            |                                      '- term
+   |           |        |                                            |                                         '- factor
+   |           |        |                                            |                                            '- power
+   |           |        |                                            |                                               '- atom
+   |           |        |                                            |                                                  |- [
+   |           |        |                                            |                                                  |- testlist_comp
+   |           |        |                                            |                                                  |  '- test
+   |           |        |                                            |                                                  |     '- or_test
+   |           |        |                                            |                                                  |        |- and_test
+   |           |        |                                            |                                                  |        |  '- not_test
+   |           |        |                                            |                                                  |        |     '- comparison
+   |           |        |                                            |                                                  |        |        '- star_expr
+   |           |        |                                            |                                                  |        |           '- expr
+   |           |        |                                            |                                                  |        |              '- xor_expr
+   |           |        |                                            |                                                  |        |                 '- and_expr
+   |           |        |                                            |                                                  |        |                    '- shift_expr
+   |           |        |                                            |                                                  |        |                       '- arith_expr
+   |           |        |                                            |                                                  |        |                          '- term
+   |           |        |                                            |                                                  |        |                             '- factor
+   |           |        |                                            |                                                  |        |                                '- power
+   |           |        |                                            |                                                  |        |                                   '- atom
+   |           |        |                                            |                                                  |        |                                      '- str
+   |           |        |                                            |                                                  |        |                                         '- "no"
+   |           |        |                                            |                                                  |        |- or
+   |           |        |                                            |                                                  |        '- and_test
+   |           |        |                                            |                                                  |           '- not_test
+   |           |        |                                            |                                                  |              '- comparison
+   |           |        |                                            |                                                  |                 '- star_expr
+   |           |        |                                            |                                                  |                    '- expr
+   |           |        |                                            |                                                  |                       '- xor_expr
+   |           |        |                                            |                                                  |                          '- and_expr
+   |           |        |                                            |                                                  |                             '- shift_expr
+   |           |        |                                            |                                                  |                                '- arith_expr
+   |           |        |                                            |                                                  |                                   '- term
+   |           |        |                                            |                                                  |                                      '- factor
+   |           |        |                                            |                                                  |                                         '- power
+   |           |        |                                            |                                                  |                                            '- atom
+   |           |        |                                            |                                                  |                                               '- str
+   |           |        |                                            |                                                  |                                                  '- "dkna"
+   |           |        |                                            |                                                  '- ]
+   |           |        |                                            '- )
+   |           |        |- :
+   |           |        '- suite
+   |           |           |- <NEWLINE>
+   |           |           |- <INDENT>
+   |           |           |- stmt
+   |           |           |  '- simple_stmt
+   |           |           |     |- small_stmt
+   |           |           |     |  '- expr_stmt
+   |           |           |     |     '- testlist_star_expr
+   |           |           |     |        '- test
+   |           |           |     |           '- or_test
+   |           |           |     |              '- and_test
+   |           |           |     |                 '- not_test
+   |           |           |     |                    '- comparison
+   |           |           |     |                       '- star_expr
+   |           |           |     |                          '- expr
+   |           |           |     |                             '- xor_expr
+   |           |           |     |                                '- and_expr
+   |           |           |     |                                   '- shift_expr
+   |           |           |     |                                      '- arith_expr
+   |           |           |     |                                         '- term
+   |           |           |     |                                            '- factor
+   |           |           |     |                                               '- power
+   |           |           |     |                                                  |- atom
+   |           |           |     |                                                  |  '- compute
+   |           |           |     |                                                  '- trailer
+   |           |           |     |                                                     |- (
+   |           |           |     |                                                     |- arglist
+   |           |           |     |                                                     |  |- argument
+   |           |           |     |                                                     |  |  '- test
+   |           |           |     |                                                     |  |     '- or_test
+   |           |           |     |                                                     |  |        '- and_test
+   |           |           |     |                                                     |  |           '- not_test
+   |           |           |     |                                                     |  |              '- comparison
+   |           |           |     |                                                     |  |                 '- star_expr
+   |           |           |     |                                                     |  |                    '- expr
+   |           |           |     |                                                     |  |                       '- xor_expr
+   |           |           |     |                                                     |  |                          '- and_expr
+   |           |           |     |                                                     |  |                             '- shift_expr
+   |           |           |     |                                                     |  |                                '- arith_expr
+   |           |           |     |                                                     |  |                                   '- term
+   |           |           |     |                                                     |  |                                      '- factor
+   |           |           |     |                                                     |  |                                         '- power
+   |           |           |     |                                                     |  |                                            |- atom
+   |           |           |     |                                                     |  |                                            |  '- data
+   |           |           |     |                                                     |  |                                            '- trailer
+   |           |           |     |                                                     |  |                                               |- .
+   |           |           |     |                                                     |  |                                               '- Q1Yes
+   |           |           |     |                                                     |  |- ,
+   |           |           |     |                                                     |  '- argument
+   |           |           |     |                                                     |     '- test
+   |           |           |     |                                                     |        '- or_test
+   |           |           |     |                                                     |           '- and_test
+   |           |           |     |                                                     |              '- not_test
+   |           |           |     |                                                     |                 '- comparison
+   |           |           |     |                                                     |                    '- star_expr
+   |           |           |     |                                                     |                       '- expr
+   |           |           |     |                                                     |                          '- xor_expr
+   |           |           |     |                                                     |                             '- and_expr
+   |           |           |     |                                                     |                                '- shift_expr
+   |           |           |     |                                                     |                                   '- arith_expr
+   |           |           |     |                                                     |                                      '- term
+   |           |           |     |                                                     |                                         '- factor
+   |           |           |     |                                                     |                                            '- power
+   |           |           |     |                                                     |                                               '- atom
+   |           |           |     |                                                     |                                                  '- str
+   |           |           |     |                                                     |                                                     '- "no"
+   |           |           |     |                                                     '- )
+   |           |           |     '- <NEWLINE>
+   |           |           '- <DEDENT>
+   |           |- stmt
+   |           |  '- compound_stmt
+   |           |     '- if_stmt
+   |           |        |- if
+   |           |        |- test
+   |           |        |  '- or_test
+   |           |        |     '- and_test
+   |           |        |        '- not_test
+   |           |        |           '- comparison
+   |           |        |              '- star_expr
+   |           |        |                 '- expr
+   |           |        |                    '- xor_expr
+   |           |        |                       '- and_expr
+   |           |        |                          '- shift_expr
+   |           |        |                             '- arith_expr
+   |           |        |                                '- term
+   |           |        |                                   '- factor
+   |           |        |                                      '- power
+   |           |        |                                         |- atom
+   |           |        |                                         |  '- test
+   |           |        |                                         '- trailer
+   |           |        |                                            |- (
+   |           |        |                                            |- arglist
+   |           |        |                                            |  |- argument
+   |           |        |                                            |  |  '- test
+   |           |        |                                            |  |     '- or_test
+   |           |        |                                            |  |        '- and_test
+   |           |        |                                            |  |           '- not_test
+   |           |        |                                            |  |              '- comparison
+   |           |        |                                            |  |                 '- star_expr
+   |           |        |                                            |  |                    '- expr
+   |           |        |                                            |  |                       '- xor_expr
+   |           |        |                                            |  |                          '- and_expr
+   |           |        |                                            |  |                             '- shift_expr
+   |           |        |                                            |  |                                '- arith_expr
+   |           |        |                                            |  |                                   '- term
+   |           |        |                                            |  |                                      '- factor
+   |           |        |                                            |  |                                         '- power
+   |           |        |                                            |  |                                            |- atom
+   |           |        |                                            |  |                                            |  '- data
+   |           |        |                                            |  |                                            '- trailer
+   |           |        |                                            |  |                                               |- .
+   |           |        |                                            |  |                                               '- Q1
+   |           |        |                                            |  |- ,
+   |           |        |                                            |  '- argument
+   |           |        |                                            |     '- test
+   |           |        |                                            |        '- or_test
+   |           |        |                                            |           '- and_test
+   |           |        |                                            |              '- not_test
+   |           |        |                                            |                 '- comparison
+   |           |        |                                            |                    '- star_expr
+   |           |        |                                            |                       '- expr
+   |           |        |                                            |                          '- xor_expr
+   |           |        |                                            |                             '- and_expr
+   |           |        |                                            |                                '- shift_expr
+   |           |        |                                            |                                   '- arith_expr
+   |           |        |                                            |                                      '- term
+   |           |        |                                            |                                         '- factor
+   |           |        |                                            |                                            '- power
+   |           |        |                                            |                                               '- atom
+   |           |        |                                            |                                                  |- [
+   |           |        |                                            |                                                  |- testlist_comp
+   |           |        |                                            |                                                  |  '- test
+   |           |        |                                            |                                                  |     '- or_test
+   |           |        |                                            |                                                  |        |- and_test
+   |           |        |                                            |                                                  |        |  '- not_test
+   |           |        |                                            |                                                  |        |     '- comparison
+   |           |        |                                            |                                                  |        |        '- star_expr
+   |           |        |                                            |                                                  |        |           '- expr
+   |           |        |                                            |                                                  |        |              '- xor_expr
+   |           |        |                                            |                                                  |        |                 '- and_expr
+   |           |        |                                            |                                                  |        |                    '- shift_expr
+   |           |        |                                            |                                                  |        |                       '- arith_expr
+   |           |        |                                            |                                                  |        |                          '- term
+   |           |        |                                            |                                                  |        |                             '- factor
+   |           |        |                                            |                                                  |        |                                '- power
+   |           |        |                                            |                                                  |        |                                   '- atom
+   |           |        |                                            |                                                  |        |                                      '- str
+   |           |        |                                            |                                                  |        |                                         '- "yes"
+   |           |        |                                            |                                                  |        |- or
+   |           |        |                                            |                                                  |        '- and_test
+   |           |        |                                            |                                                  |           '- not_test
+   |           |        |                                            |                                                  |              '- comparison
+   |           |        |                                            |                                                  |                 '- star_expr
+   |           |        |                                            |                                                  |                    '- expr
+   |           |        |                                            |                                                  |                       '- xor_expr
+   |           |        |                                            |                                                  |                          '- and_expr
+   |           |        |                                            |                                                  |                             '- shift_expr
+   |           |        |                                            |                                                  |                                '- arith_expr
+   |           |        |                                            |                                                  |                                   '- term
+   |           |        |                                            |                                                  |                                      '- factor
+   |           |        |                                            |                                                  |                                         '- power
+   |           |        |                                            |                                                  |                                            '- atom
+   |           |        |                                            |                                                  |                                               '- str
+   |           |        |                                            |                                                  |                                                  '- "maybe"
+   |           |        |                                            |                                                  '- ]
+   |           |        |                                            '- )
+   |           |        |- :
+   |           |        '- suite
+   |           |           |- <NEWLINE>
+   |           |           |- <INDENT>
+   |           |           |- stmt
+   |           |           |  '- simple_stmt
+   |           |           |     |- small_stmt
+   |           |           |     |  '- expr_stmt
+   |           |           |     |     '- testlist_star_expr
+   |           |           |     |        '- test
+   |           |           |     |           '- or_test
+   |           |           |     |              '- and_test
+   |           |           |     |                 '- not_test
+   |           |           |     |                    '- comparison
+   |           |           |     |                       '- star_expr
+   |           |           |     |                          '- expr
+   |           |           |     |                             '- xor_expr
+   |           |           |     |                                '- and_expr
+   |           |           |     |                                   '- shift_expr
+   |           |           |     |                                      '- arith_expr
+   |           |           |     |                                         '- term
+   |           |           |     |                                            '- factor
+   |           |           |     |                                               '- power
+   |           |           |     |                                                  |- atom
+   |           |           |     |                                                  |  '- compute
+   |           |           |     |                                                  '- trailer
+   |           |           |     |                                                     |- (
+   |           |           |     |                                                     |- arglist
+   |           |           |     |                                                     |  |- argument
+   |           |           |     |                                                     |  |  '- test
+   |           |           |     |                                                     |  |     '- or_test
+   |           |           |     |                                                     |  |        '- and_test
+   |           |           |     |                                                     |  |           '- not_test
+   |           |           |     |                                                     |  |              '- comparison
+   |           |           |     |                                                     |  |                 '- star_expr
+   |           |           |     |                                                     |  |                    '- expr
+   |           |           |     |                                                     |  |                       '- xor_expr
+   |           |           |     |                                                     |  |                          '- and_expr
+   |           |           |     |                                                     |  |                             '- shift_expr
+   |           |           |     |                                                     |  |                                '- arith_expr
+   |           |           |     |                                                     |  |                                   '- term
+   |           |           |     |                                                     |  |                                      '- factor
+   |           |           |     |                                                     |  |                                         '- power
+   |           |           |     |                                                     |  |                                            |- atom
+   |           |           |     |                                                     |  |                                            |  '- data
+   |           |           |     |                                                     |  |                                            '- trailer
+   |           |           |     |                                                     |  |                                               |- .
+   |           |           |     |                                                     |  |                                               '- Q1No
+   |           |           |     |                                                     |  |- ,
+   |           |           |     |                                                     |  '- argument
+   |           |           |     |                                                     |     '- test
+   |           |           |     |                                                     |        '- or_test
+   |           |           |     |                                                     |           '- and_test
+   |           |           |     |                                                     |              '- not_test
+   |           |           |     |                                                     |                 '- comparison
+   |           |           |     |                                                     |                    '- star_expr
+   |           |           |     |                                                     |                       '- expr
+   |           |           |     |                                                     |                          '- xor_expr
+   |           |           |     |                                                     |                             '- and_expr
+   |           |           |     |                                                     |                                '- shift_expr
+   |           |           |     |                                                     |                                   '- arith_expr
+   |           |           |     |                                                     |                                      '- term
+   |           |           |     |                                                     |                                         '- factor
+   |           |           |     |                                                     |                                            '- power
+   |           |           |     |                                                     |                                               '- atom
+   |           |           |     |                                                     |                                                  '- str
+   |           |           |     |                                                     |                                                     '- "yes"
+   |           |           |     |                                                     '- )
+   |           |           |     '- <NEWLINE>
+   |           |           '- <DEDENT>
+   |           '- <DEDENT>
+   '- <EOF>
