@@ -8,6 +8,8 @@ public class TokenTypeIdentifier {
     int tokenType = token.getType();
     return switch (tokenType) {
       case Python3Parser.ASSIGN -> NodeType.EQUALS;
+      case Python3Parser.COLON -> NodeType.COLON;
+      case Python3Parser.OPEN_BRACE -> NodeType.BLOCK;
       case Python3Parser.STAR -> NodeType.MULTIPLY;
       case Python3Parser.ADD -> NodeType.PLUS;
       case Python3Parser.MINUS -> NodeType.SUBTRACT;

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.ardvark.Python3Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,10 @@ public class AstBuilder {
                                         List<AstNode> astList) {
     if (astList.size() >= 3) {
       NodeType nodeType = astList.get(1).getNodeType();
-      if (EQUALS.equals(nodeType) ||
+      if (tree instanceof Python3Parser.AtomContext ||
+          EQUALS.equals(nodeType) ||
+          COLON.equals(nodeType) ||
+          DICT_OR_SET.equals(nodeType) ||
           MULTIPLY.equals(nodeType) ||
           DIVIDE.equals(nodeType) ||
           PLUS.equals(nodeType) ||

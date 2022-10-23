@@ -15,6 +15,7 @@ public enum NodeType {
   EQUALS("="),
   DICT_OR_SET("DictOrSet"),
   COLON(":"),
+  BLOCK("{}"),
   MULTIPLY("*"),
   DIVIDE("/"),
   PLUS("+"),

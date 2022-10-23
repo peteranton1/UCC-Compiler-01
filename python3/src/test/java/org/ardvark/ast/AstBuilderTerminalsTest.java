@@ -8,31 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-class AstBuilderTerminalsTest {
-
-  ParseTree parseSource(String source, String expected) {
-    ParseTree parseTree = new Builder.Tree(source).toTree();
-    if (expected != null) {
-      String actual = parseTree.getText();
-      assertEquals(expected, actual);
-    }
-    return parseTree;
-  }
-
-  ParseTree parseSource(String source) {
-    return parseSource(source, null);
-  }
-
-  public void printTree(String source) {
-    String s = new Builder.Tree(source).toStringASCII();
-    System.out.println(s);
-  }
-
-  public String nodeToString(AstNode astNode) {
-    StringBuilder buf = new StringBuilder();
-    new AstBuilder().walk(astNode, buf);
-    return buf.toString();
-  }
+class AstBuilderTerminalsTest extends AstTestBase {
 
   @Test
   void assignStringAsParseTree() {
