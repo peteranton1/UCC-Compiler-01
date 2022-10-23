@@ -5,10 +5,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.ardvark.python3.Builder;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.ardvark.ast.NodeType.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
@@ -32,6 +28,12 @@ class AstBuilderTerminalsTest {
     System.out.println(s);
   }
 
+  public String nodeToString(AstNode astNode) {
+    StringBuilder buf = new StringBuilder();
+    new AstBuilder().walk(astNode, buf);
+    return buf.toString();
+  }
+
   @Test
   void assignStringAsParseTree() {
     String source = "survey = \"J123456 Survey\"\n";
@@ -44,13 +46,15 @@ class AstBuilderTerminalsTest {
     String source = "survey = \"J123456 Survey\"\n";
     ParseTree tree = parseSource(source);
     //printTree(source);
-    AstNode expectedNode = buildNode(
-        ROOT, List.of(buildNode(
-            EQUALS, Arrays.asList(
-                terminal(NAME, "survey"),
-                terminal(STRING, "\"J123456 Survey\"")))));
-    AstNode actual = new AstBuilder().toAST(tree);
-    assertEquals(expectedNode, actual);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- Root
+           '- =
+              |- survey
+              '- "J123456 Survey"
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
   }
 
   @Test
@@ -58,13 +62,15 @@ class AstBuilderTerminalsTest {
     String source = "survey = 5\n";
     ParseTree tree = parseSource(source);
     //printTree(source);
-    AstNode expectedNode = buildNode(
-        ROOT, List.of(buildNode(
-            EQUALS, Arrays.asList(
-                terminal(NAME, "survey"),
-                terminal(NUMBER, "5")))));
-    AstNode actual = new AstBuilder().toAST(tree);
-    assertEquals(expectedNode, actual);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- Root
+           '- =
+              |- survey
+              '- 5
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
   }
 
   @Test
@@ -72,16 +78,17 @@ class AstBuilderTerminalsTest {
     String source = "survey = 5 * 4\n";
     ParseTree tree = parseSource(source);
     //printTree(source);
-    AstNode expectedNode = buildNode(
-        ROOT, List.of(buildNode(
-            EQUALS, Arrays.asList(
-                terminal(NAME, "survey"),
-                buildNode(
-                    MULTIPLY, Arrays.asList(
-                        terminal(NUMBER, "5"),
-                        terminal(NUMBER, "4")))))));
-    AstNode actual = new AstBuilder().toAST(tree);
-    assertEquals(expectedNode, actual);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- Root
+           '- =
+              |- survey
+              '- *
+                 |- 5
+                 '- 4
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
   }
 
   @Test
@@ -89,16 +96,17 @@ class AstBuilderTerminalsTest {
     String source = "survey = 5 + 4\n";
     ParseTree tree = parseSource(source);
     //printTree(source);
-    AstNode expectedNode = buildNode(
-        ROOT, List.of(buildNode(
-            EQUALS, Arrays.asList(
-                terminal(NAME, "survey"),
-                buildNode(
-                    PLUS, Arrays.asList(
-                        terminal(NUMBER, "5"),
-                        terminal(NUMBER, "4")))))));
-    AstNode actual = new AstBuilder().toAST(tree);
-    assertEquals(expectedNode, actual);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- Root
+           '- =
+              |- survey
+              '- +
+                 |- 5
+                 '- 4
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
   }
 
   @Test
@@ -106,16 +114,17 @@ class AstBuilderTerminalsTest {
     String source = "survey = 5 - 4\n";
     ParseTree tree = parseSource(source);
     //printTree(source);
-    AstNode expectedNode = buildNode(
-        ROOT, List.of(buildNode(
-            EQUALS, Arrays.asList(
-                terminal(NAME, "survey"),
-                buildNode(
-                    SUBTRACT, Arrays.asList(
-                        terminal(NUMBER, "5"),
-                        terminal(NUMBER, "4")))))));
-    AstNode actual = new AstBuilder().toAST(tree);
-    assertEquals(expectedNode, actual);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- Root
+           '- =
+              |- survey
+              '- -
+                 |- 5
+                 '- 4
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
   }
 
   @Test
@@ -123,33 +132,17 @@ class AstBuilderTerminalsTest {
     String source = "survey = 5 / 4\n";
     ParseTree tree = parseSource(source);
     //printTree(source);
-    AstNode expectedNode = buildNode(
-        ROOT, List.of(buildNode(
-            EQUALS, Arrays.asList(
-                terminal(NAME, "survey"),
-                buildNode(
-                    DIVIDE, Arrays.asList(
-                        terminal(NUMBER, "5"),
-                        terminal(NUMBER, "4")))))));
-    AstNode actual = new AstBuilder().toAST(tree);
-    assertEquals(expectedNode, actual);
-  }
-
-
-  private AstNode buildNode(NodeType nodeType,
-                            List<AstNode> children) {
-    return AstNode.builder()
-        .nodeType(nodeType)
-        .text(nodeType.getText())
-        .children(children)
-        .build();
-  }
-
-  private AstNode terminal(NodeType nodeType, String text) {
-    return AstNode.builder()
-        .nodeType(nodeType)
-        .text(text)
-        .build();
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- Root
+           '- =
+              |- survey
+              '- /
+                 |- 5
+                 '- 4
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
   }
 
 }
