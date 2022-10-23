@@ -87,10 +87,22 @@ public final class Builder {
       this.input = input;
     }
 
+    public ParseTree toTree() {
+
+      Python3Parser parser = new Builder.Parser(input).build();
+      return parser.file_input();
+
+    }
+
     public String toStringASCII() {
 
       Python3Parser parser = new Builder.Parser(input).build();
       ParseTree tree = parser.file_input();
+
+      return toStringASCII(tree);
+    }
+
+    public String toStringASCII(ParseTree tree) {
 
       StringBuilder builder = new StringBuilder();
 
