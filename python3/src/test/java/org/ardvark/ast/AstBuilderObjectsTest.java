@@ -2,7 +2,6 @@ package org.ardvark.ast;
 
 import lombok.extern.slf4j.Slf4j;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.ardvark.python3.Builder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +18,7 @@ class AstBuilderObjectsTest extends AstTestBase  {
   @Test
   void assignStringAsAstNode() {
     ParseTree tree = parseSource(input);
-    printTree(input);
+    //printTree(input);
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- Root

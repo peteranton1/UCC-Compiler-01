@@ -1,25 +1,60 @@
 package org.ardvark.ast;
 
-import org.antlr.v4.runtime.Token;
-import org.ardvark.Python3Parser;
+import org.antlr.v4.runtime.tree.ParseTree;
+
+import static org.ardvark.ast.NodeType.*;
 
 public class TokenTypeIdentifier {
-  public NodeType identify(Token token) {
-    int tokenType = token.getType();
-    return switch (tokenType) {
-      case Python3Parser.ASSIGN -> NodeType.EQUALS;
-      case Python3Parser.COLON -> NodeType.COLON;
-      case Python3Parser.OPEN_BRACE -> NodeType.BLOCK;
-      case Python3Parser.STAR -> NodeType.MULTIPLY;
-      case Python3Parser.ADD -> NodeType.PLUS;
-      case Python3Parser.MINUS -> NodeType.SUBTRACT;
-      case Python3Parser.DIV -> NodeType.DIVIDE;
-      case Python3Parser.STRING_LITERAL -> NodeType.STRING;
-      case Python3Parser.NAME -> NodeType.NAME;
-      case Python3Parser.DECIMAL_INTEGER -> NodeType.NUMBER;
-      case Python3Parser.NEWLINE,
-          Python3Parser.EOF -> NodeType.IGNORE;
-      default -> NodeType.UNKNOWN;
+
+
+  public boolean isInfix(NodeType nodeType) {
+    return switch (nodeType) {
+      case EQUALS,
+          COLON,
+          COMMA,
+          MULTIPLY,
+          PLUS,
+          SUBTRACT,
+          DIVIDE -> true;
+      default -> false;
     };
+  }
+
+  public boolean isColon(ParseTree tree) {
+    return COLON.equals(identify(tree));
+  }
+
+  public NodeType identify(ParseTree tree) {
+    String text = tree.getText();
+    char ch = text != null && text.length()>0 ? text.charAt(0) : '\0';
+    if('=' == ch){
+      return EQUALS;
+    } else if(':' == ch){
+      return COLON;
+    } else if(',' == ch){
+      return COMMA;
+    } else if('*' == ch){
+      return MULTIPLY;
+    } else if('+' == ch){
+      return PLUS;
+    } else if('-' == ch){
+      return SUBTRACT;
+    } else if('/' == ch){
+      return DIVIDE;
+    } else if('"' == ch){
+      return STRING;
+    } else if(Character.isDigit(ch)){
+      return NUMBER;
+    } else if("None".equals(text)){
+      return LITERAL;
+    } else if("False".equals(text)){
+      return LITERAL;
+    } else if("True".equals(text)){
+      return LITERAL;
+    } else if(Character.isAlphabetic(ch)){
+      return NAME;
+    } else {
+      return UNKNOWN;
+    }
   }
 }

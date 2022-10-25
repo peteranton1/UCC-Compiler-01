@@ -8,28 +8,33 @@ import lombok.Getter;
 public enum NodeType {
   UNKNOWN("Unknown"),
   IGNORE("Ignore"),
-  ROOT("Root"),
+  // Atoms,
+  AGG("Agg"),
+  NAME("Name"),
+  NUMBER("Number"),
+  STRING("String"),
+  ELLIPSE("..."),
+  LITERAL("Literal"),
+  DICT_OR_SET("DictOrSet"),
+  STMT_LIST("StmtList"),
   STMT("Stmt"),
   IMPORT("Import"),
   DOTTED_NAME("DottedName"),
+  // INFIX
   EQUALS("="),
-  DICT_OR_SET("DictOrSet"),
   COLON(":"),
+  COMMA(","),
   BLOCK("{}"),
   MULTIPLY("*"),
   DIVIDE("/"),
   PLUS("+"),
   SUBTRACT("-"),
-  NAME("Name"),
-  NUMBER("Number"),
-  STRING("String"),
   LIST("List"),
   FUNC_DEF("FuncDef"),
   PARAMS("Params"),
   CALL("Call"),
   IF_EXPR("IfExpr"),
-  COND("Cond"),
-  END_OF_FILE("Eof")
+  COND("Cond")
   ;
 
   private final String text;
