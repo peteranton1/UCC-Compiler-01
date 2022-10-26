@@ -13,12 +13,14 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
   private final PythonCSTAtomParser cstAtomParser;
   private final PythonCSTExprStmtParser cstExprStmtParser;
   private final PythonCSTDictOrSetMakerParser cstDictOrSetMakerParser;
+  private final PythonCSTArithParser cstArithParser;
 
   public AstBuilderVisitor() {
     CstPanic cstPanic = new CstPanic();
     cstAtomParser = new PythonCSTAtomParser(cstPanic, this);
     cstExprStmtParser = new PythonCSTExprStmtParser(cstPanic, this);
     cstDictOrSetMakerParser = new PythonCSTDictOrSetMakerParser(cstPanic, this);
+    cstArithParser = new PythonCSTArithParser(cstPanic, this);
   }
 
   @Override
@@ -347,12 +349,12 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitArith_expr(Python3Parser.Arith_exprContext ctx) {
-    return super.visitArith_expr(ctx);
+    return cstArithParser.visitArith(ctx);
   }
 
   @Override
   public AstNode visitTerm(Python3Parser.TermContext ctx) {
-    return super.visitTerm(ctx);
+    return cstArithParser.visitArith(ctx);
   }
 
   @Override
@@ -407,7 +409,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitDictorsetmaker(Python3Parser.DictorsetmakerContext ctx) {
-    return cstDictOrSetMakerParser.visitDictorsetmaker(ctx);
+    return cstDictOrSetMakerParser.visitDictOrSet(ctx);
   }
 
   @Override

@@ -48,7 +48,7 @@ public class PythonCSTAtomParser {
         errBuf.append("'[' testlist_comp? ']' \n");
         return panic.panic(child0, errBuf);
       } else if ('{' == ch) {
-        astNode = parseDictOrSet(ctx, errBuf);
+        astNode = visitor.visitChildren(ctx);
       } else if (Character.isDigit(ch)) {
         astNode = parseNumber(child0, errBuf);
       } else if ("None" .equals(text)) {
@@ -71,24 +71,6 @@ public class PythonCSTAtomParser {
     }
     errBuf.append("unknown 2 \n");
     return panic.panic(ctx, errBuf);
-  }
-
-  public AstNode parseDictOrSet(Python3Parser.AtomContext ctx, StringBuilder errBuf) {
-    errBuf.append("parseDictOrSet \n");
-    char ch = ctx.getChild(0).getText().charAt(0);
-    if ('{' == ch) {
-      List<AstNode> children = new ArrayList<>();
-      if (ctx.getChildCount() == 3) {
-        children.add(visitor.visitChildren(ctx));
-      }
-      return AstNode.builder()
-          .nodeType(NodeType.DICT_OR_SET)
-          .text(NodeType.DICT_OR_SET.getText())
-          .children(children)
-          .build();
-    } else {
-      return panic.panic(ctx, errBuf);
-    }
   }
 
   public AstNode parseNumber(ParseTree tree, StringBuilder errBuf) {

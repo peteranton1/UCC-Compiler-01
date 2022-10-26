@@ -16,7 +16,6 @@ public enum NodeType {
   ELLIPSE("..."),
   LITERAL("Literal"),
   DICT_OR_SET("DictOrSet"),
-  STMT_LIST("StmtList"),
   STMT("Stmt"),
   IMPORT("Import"),
   DOTTED_NAME("DottedName"),
@@ -25,10 +24,13 @@ public enum NodeType {
   COLON(":"),
   COMMA(","),
   BLOCK("{}"),
-  MULTIPLY("*"),
-  DIVIDE("/"),
-  PLUS("+"),
-  SUBTRACT("-"),
+  MUL("*"),
+  DIV("/"),
+  ADD("+"),
+  SUB("-"),
+  PCENT("%"),
+  DBLSLASH("//"),
+  AT("@"),
   LIST("List"),
   FUNC_DEF("FuncDef"),
   PARAMS("Params"),
@@ -38,4 +40,14 @@ public enum NodeType {
   ;
 
   private final String text;
+
+  public static NodeType textValueOf(String text) {
+    for(NodeType nodeType: values()) {
+      if(nodeType.getText().equals(text)){
+        return nodeType;
+      }
+    }
+    throw new AstRecogniserException(
+        "Unrecognised NodeType text: " + text);
+  }
 }

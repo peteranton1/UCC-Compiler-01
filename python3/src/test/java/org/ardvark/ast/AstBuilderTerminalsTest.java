@@ -180,10 +180,9 @@ class AstBuilderTerminalsTest extends AstTestBase {
            '- =
               |- survey
               '- DictOrSet
-                 '- StmtList
-                    '- :
-                       |- a
-                       '- "A"
+                 '- :
+                    |- a
+                    '- "A"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -202,13 +201,12 @@ class AstBuilderTerminalsTest extends AstTestBase {
            '- =
               |- survey
               '- DictOrSet
-                 '- StmtList
-                    |- :
-                    |  |- a
-                    |  '- "A"
-                    '- :
-                       |- b
-                       '- "B"
+                 |- :
+                 |  |- a
+                 |  '- "A"
+                 '- :
+                    |- b
+                    '- "B"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -227,7 +225,7 @@ class AstBuilderTerminalsTest extends AstTestBase {
            '- =
               |- survey
               '- DictOrSet
-                 '- StmtList
+                 '- ,
                     |- "A"
                     '- b
         """;
@@ -286,6 +284,54 @@ class AstBuilderTerminalsTest extends AstTestBase {
               '- -
                  |- 5
                  '- 4
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void assignMinusAddExpr() {
+    String source = "survey = 5 - 4 + 3 - 2 - 1\n";
+    ParseTree tree = parseSource(source);
+    //printTree(source);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- =
+              |- survey
+              '- -
+                 |- -
+                 |  |- +
+                 |  |  |- -
+                 |  |  |  |- 5
+                 |  |  |  '- 4
+                 |  |  '- 3
+                 |  '- 2
+                 '- 1
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void assignAddMulExpr() {
+    String source = "survey = 5 + 4 * 3 + 2 * 1\n";
+    ParseTree tree = parseSource(source);
+    //printTree(source);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- =
+              |- survey
+              '- +
+                 |- +
+                 |  |- 5
+                 |  '- *
+                 |     |- 4
+                 |     '- 3
+                 '- *
+                    |- 2
+                    '- 1
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);

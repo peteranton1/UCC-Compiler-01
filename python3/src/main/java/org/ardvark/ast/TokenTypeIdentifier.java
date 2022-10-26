@@ -12,16 +12,12 @@ public class TokenTypeIdentifier {
       case EQUALS,
           COLON,
           COMMA,
-          MULTIPLY,
-          PLUS,
-          SUBTRACT,
-          DIVIDE -> true;
+          MUL,
+          ADD,
+          SUB,
+          DIV -> true;
       default -> false;
     };
-  }
-
-  public boolean isColon(ParseTree tree) {
-    return COLON.equals(identify(tree));
   }
 
   public NodeType identify(ParseTree tree) {
@@ -34,13 +30,13 @@ public class TokenTypeIdentifier {
     } else if(',' == ch){
       return COMMA;
     } else if('*' == ch){
-      return MULTIPLY;
+      return MUL;
     } else if('+' == ch){
-      return PLUS;
+      return ADD;
     } else if('-' == ch){
-      return SUBTRACT;
+      return SUB;
     } else if('/' == ch){
-      return DIVIDE;
+      return DIV;
     } else if('"' == ch){
       return STRING;
     } else if(Character.isDigit(ch)){
