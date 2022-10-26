@@ -12,7 +12,7 @@ import static org.ardvark.ast.NodeType.DICT_OR_SET;
 
 @AllArgsConstructor
 @Getter
-public class PythonCSTDictOrSetMakerParser {
+public class PythonCSTDictOrSetParser {
 
   private final CstPanic panic;
   private final AstBuilderVisitor visitor;

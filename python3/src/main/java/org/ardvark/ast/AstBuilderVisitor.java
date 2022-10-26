@@ -12,14 +12,14 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   private final PythonCSTAtomParser cstAtomParser;
   private final PythonCSTExprStmtParser cstExprStmtParser;
-  private final PythonCSTDictOrSetMakerParser cstDictOrSetMakerParser;
+  private final PythonCSTDictOrSetParser cstDictOrSetMakerParser;
   private final PythonCSTArithParser cstArithParser;
 
   public AstBuilderVisitor() {
     CstPanic cstPanic = new CstPanic();
     cstAtomParser = new PythonCSTAtomParser(cstPanic, this);
     cstExprStmtParser = new PythonCSTExprStmtParser(cstPanic, this);
-    cstDictOrSetMakerParser = new PythonCSTDictOrSetMakerParser(cstPanic, this);
+    cstDictOrSetMakerParser = new PythonCSTDictOrSetParser(cstPanic, this);
     cstArithParser = new PythonCSTArithParser(cstPanic, this);
   }
 
