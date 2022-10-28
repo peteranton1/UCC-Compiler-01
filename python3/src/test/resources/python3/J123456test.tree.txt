@@ -6,6 +6,8 @@
    |     |     '- import_from
    |     |        |- from
    |     |        |- dotted_name
+   |     |        |  |- demog
+   |     |        |  |- .
    |     |        |  '- Style
    |     |        |- import
    |     |        '- *

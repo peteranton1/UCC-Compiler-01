@@ -17,6 +17,74 @@ class AstBuilderTerminalsTest extends AstTestBase {
   }
 
   @Test
+  void listWith0Items() {
+    String source = "[]\n";
+    String expected0 = "[]\n<EOF>";
+    ParseTree tree = parseSource(source, expected0);
+    //printTree(source);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              '- []
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void listWith1ItemsString() {
+    String source = "[\"a\"]\n";
+    String expected0 = "[\"a\"]\n<EOF>";
+    ParseTree tree = parseSource(source, expected0);
+    //printTree(source);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              '- []
+                 '- "a"
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void listWith1ItemsName() {
+    String source = "[a]\n";
+    String expected0 = "[a]\n<EOF>";
+    ParseTree tree = parseSource(source, expected0);
+    //printTree(source);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              '- []
+                 '- a
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void listWith2ItemsName() {
+    String source = "[a,b]\n";
+    String expected0 = "[a,b]\n<EOF>";
+    ParseTree tree = parseSource(source, expected0);
+    //printTree(source);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              '- []
+                 |- a
+                 '- b
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
   void stringAsAstNode() {
     String source = "\"J123456 Survey\"\n";
     String expected0 = "\"J123456 Survey\"\n<EOF>";
@@ -25,7 +93,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- "J123456 Survey"
+           '- Stmt
+              '- "J123456 Survey"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -40,7 +109,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- "AaaBbbCcc"
+           '- Stmt
+              '- "AaaBbbCcc"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -55,7 +125,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- survey
+           '- Stmt
+              '- survey
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -70,7 +141,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- 1234
+           '- Stmt
+              '- 1234
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -84,7 +156,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- True
+           '- Stmt
+              '- True
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -99,7 +172,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- False
+           '- Stmt
+              '- False
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -114,7 +188,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- None
+           '- Stmt
+              '- None
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -129,7 +204,8 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- ...
+           '- Stmt
+              '- ...
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -143,9 +219,10 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- "J123456 Survey"
+           '- Stmt
+              '- =
+                 |- survey
+                 '- "J123456 Survey"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -159,9 +236,10 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- 5
+           '- Stmt
+              '- =
+                 |- survey
+                 '- 5
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -177,12 +255,13 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- DictOrSet
-                 '- :
-                    |- a
-                    '- "A"
+           '- Stmt
+              '- =
+                 |- survey
+                 '- {}
+                    '- :
+                       |- a
+                       '- "A"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -198,15 +277,16 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- DictOrSet
-                 |- :
-                 |  |- a
-                 |  '- "A"
-                 '- :
-                    |- b
-                    '- "B"
+           '- Stmt
+              '- =
+                 |- survey
+                 '- {}
+                    |- :
+                    |  |- a
+                    |  '- "A"
+                    '- :
+                       |- b
+                       '- "B"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -222,12 +302,13 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- DictOrSet
-                 '- ,
-                    |- "A"
-                    '- b
+           '- Stmt
+              '- =
+                 |- survey
+                 '- {}
+                    '- Unknown
+                       |- "A"
+                       '- b
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -241,11 +322,12 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- *
-                 |- 5
-                 '- 4
+           '- Stmt
+              '- =
+                 |- survey
+                 '- *
+                    |- 5
+                    '- 4
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -261,11 +343,12 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- +
-                 |- 5
-                 '- 4
+           '- Stmt
+              '- =
+                 |- survey
+                 '- +
+                    |- 5
+                    '- 4
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -279,11 +362,12 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- -
-                 |- 5
-                 '- 4
+           '- Stmt
+              '- =
+                 |- survey
+                 '- -
+                    |- 5
+                    '- 4
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -297,17 +381,18 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- -
-                 |- -
-                 |  |- +
-                 |  |  |- -
-                 |  |  |  |- 5
-                 |  |  |  '- 4
-                 |  |  '- 3
-                 |  '- 2
-                 '- 1
+           '- Stmt
+              '- =
+                 |- survey
+                 '- -
+                    |- -
+                    |  |- +
+                    |  |  |- -
+                    |  |  |  |- 5
+                    |  |  |  '- 4
+                    |  |  '- 3
+                    |  '- 2
+                    '- 1
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -321,17 +406,18 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- +
-                 |- +
-                 |  |- 5
-                 |  '- *
-                 |     |- 4
-                 |     '- 3
-                 '- *
-                    |- 2
-                    '- 1
+           '- Stmt
+              '- =
+                 |- survey
+                 '- +
+                    |- +
+                    |  |- 5
+                    |  '- *
+                    |     |- 4
+                    |     '- 3
+                    '- *
+                       |- 2
+                       '- 1
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -345,11 +431,12 @@ class AstBuilderTerminalsTest extends AstTestBase {
     AstNode actualNode = new AstBuilder().toAST(tree);
     String expected = """
         '- {}
-           '- =
-              |- survey
-              '- /
-                 |- 5
-                 '- 4
+           '- Stmt
+              '- =
+                 |- survey
+                 '- /
+                    |- 5
+                    '- 4
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);

@@ -7,37 +7,23 @@ import lombok.Getter;
 @Getter
 public enum NodeType {
   UNKNOWN("Unknown"),
-  IGNORE("Ignore"),
-  // Atoms,
+  ADD("+"),
   AGG("Agg"),
+  COLON(":"),
+  DOTTED_NAME("DottedName"),
+  DICT_OR_SET("{}"),
+  DIV("/"),
+  ELLIPSE("..."),
+  EQUALS("="),
+  IMPORT_FROM("ImportFrom"),
+  LITERAL("Literal"),
+  MUL("*"),
   NAME("Name"),
   NUMBER("Number"),
-  STRING("String"),
-  ELLIPSE("..."),
-  LITERAL("Literal"),
-  DICT_OR_SET("DictOrSet"),
   STMT("Stmt"),
-  IMPORT("Import"),
-  DOTTED_NAME("DottedName"),
-  // INFIX
-  EQUALS("="),
-  COLON(":"),
-  COMMA(","),
-  BLOCK("{}"),
-  MUL("*"),
-  DIV("/"),
-  ADD("+"),
+  STRING("String"),
   SUB("-"),
-  PCENT("%"),
-  DBLSLASH("//"),
-  AT("@"),
-  LIST("List"),
-  FUNC_DEF("FuncDef"),
-  PARAMS("Params"),
-  CALL("Call"),
-  IF_EXPR("IfExpr"),
-  COND("Cond")
-  ;
+  LIST("[]");
 
   private final String text;
 
@@ -47,7 +33,6 @@ public enum NodeType {
         return nodeType;
       }
     }
-    throw new AstRecogniserException(
-        "Unrecognised NodeType text: " + text);
+    return UNKNOWN;
   }
 }

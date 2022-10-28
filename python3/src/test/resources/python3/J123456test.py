@@ -1,4 +1,4 @@
-from Style import *
+from demog.Style import *
 
 # -------------------------
 # Data definition

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.ardvark.python3.Builder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,8 @@ public class PythonCSTArithParser {
       return parseArith(ctx, errBuf);
     }
     errBuf.append("unknown 1 \n");
-    return panic.panic(ctx, errBuf);
+    String ctx1 = new Builder.Tree("").toStringASCII(ctx);
+    return panic.panic(ctx1, errBuf);
   }
 
   public AstNode parseArith(ParserRuleContext ctx,

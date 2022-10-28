@@ -2,11 +2,13 @@ package org.ardvark.ast;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.ardvark.Python3Parser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.ardvark.ast.NodeType.*;
 
 @AllArgsConstructor
 @Getter
@@ -16,21 +18,32 @@ public class PythonCSTAtomParser {
   private final StringUtils stringUtils = new StringUtils();
   private final AstBuilderVisitor visitor;
 
-  /*
-    atom
-     : '(' ( yield_expr | testlist_comp )? ')'
-     | '[' testlist_comp? ']'
-     | '{' dictorsetmaker? '}'
-     | NAME
-     | number
-     | str+
-     | '...'
-     | NONE
-     | TRUE
-     | FALSE
-     ;
-   */
-  public AstNode visitAtom(Python3Parser.AtomContext ctx) {
+  public AstNode visitDotted_name(ParserRuleContext ctx) {
+    StringBuilder errBuf = new StringBuilder();
+    errBuf.append("Error Recognising DottedName \n");
+    return parseDottedName(ctx, errBuf);
+  }
+
+  public AstNode parseDottedName(ParserRuleContext ctx,
+                                 StringBuilder errBuf) {
+    errBuf.append("visitDottedName \n");
+    List<AstNode> aggChildren = new ArrayList<>();
+    AstNode astNode;
+    for(int i = 0; i < ctx.getChildCount(); i++) {
+      astNode = parseName(ctx.getChild(i), errBuf);
+      if(astNode != null &&
+          !".".equals(astNode.getText())){
+        aggChildren.add(astNode);
+      }
+    }
+    return AstNode.builder()
+        .nodeType(DOTTED_NAME)
+        .text(DOTTED_NAME.getText())
+        .children(aggChildren)
+        .build();
+  }
+
+  public AstNode visitAtom(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising atom \n");
     int childCount = ctx.getChildCount();
@@ -44,11 +57,15 @@ public class PythonCSTAtomParser {
         errBuf.append("'(' ( yield_expr | testlist_comp )? ')' \n");
         return panic.panic(child0, errBuf);
       } else if ('[' == ch) {
-        // Implement
-        errBuf.append("'[' testlist_comp? ']' \n");
-        return panic.panic(child0, errBuf);
+        astNode = visitor.visitChildren(ctx);
+        if(astNode == null) {
+          return emptyNode(LIST);
+        }
       } else if ('{' == ch) {
         astNode = visitor.visitChildren(ctx);
+        if(astNode == null) {
+          return emptyNode(DICT_OR_SET);
+        }
       } else if (Character.isDigit(ch)) {
         astNode = parseNumber(child0, errBuf);
       } else if ("None" .equals(text)) {
@@ -71,6 +88,13 @@ public class PythonCSTAtomParser {
     }
     errBuf.append("unknown 2 \n");
     return panic.panic(ctx, errBuf);
+  }
+
+  private AstNode emptyNode(NodeType nodeType) {
+    return AstNode.builder()
+        .nodeType(nodeType)
+        .text(nodeType.getText())
+        .build();
   }
 
   public AstNode parseNumber(ParseTree tree, StringBuilder errBuf) {
@@ -136,11 +160,12 @@ public class PythonCSTAtomParser {
 
   public AstNode parseName(ParseTree tree, StringBuilder errBuf) {
     errBuf.append("parseName \n");
-    char ch = tree.getText().charAt(0);
-    if (Character.isAlphabetic(ch)) {
+    String text = tree.getText();
+    char ch = text.charAt(0);
+    if (Character.isAlphabetic(ch) || '.' == ch) {
       return AstNode.builder()
-          .nodeType(NodeType.NAME)
-          .text(tree.getText())
+          .nodeType(NAME)
+          .text(text)
           .build();
     } else {
       return panic.panic(tree, errBuf);

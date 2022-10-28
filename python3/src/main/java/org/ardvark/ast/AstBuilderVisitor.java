@@ -11,15 +11,19 @@ import static org.ardvark.ast.NodeType.AGG;
 public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   private final PythonCSTAtomParser cstAtomParser;
-  private final PythonCSTExprStmtParser cstExprStmtParser;
+  private final PythonCSTCompParser cstCompParser;
   private final PythonCSTDictOrSetParser cstDictOrSetMakerParser;
+  private final PythonCSTImportParser cstImportParser;
+  private final PythonCSTStmtParser cstStmtParser;
   private final PythonCSTArithParser cstArithParser;
 
   public AstBuilderVisitor() {
     CstPanic cstPanic = new CstPanic();
     cstAtomParser = new PythonCSTAtomParser(cstPanic, this);
-    cstExprStmtParser = new PythonCSTExprStmtParser(cstPanic, this);
+    cstCompParser = new PythonCSTCompParser(cstPanic, this);
     cstDictOrSetMakerParser = new PythonCSTDictOrSetParser(cstPanic, this);
+    cstImportParser = new PythonCSTImportParser(cstPanic, this);
+    cstStmtParser = new PythonCSTStmtParser(cstPanic, this);
     cstArithParser = new PythonCSTArithParser(cstPanic, this);
   }
 
@@ -109,7 +113,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitStmt(Python3Parser.StmtContext ctx) {
-    return super.visitStmt(ctx);
+    return cstStmtParser.visitStmt(ctx);
   }
 
   @Override
@@ -119,12 +123,13 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitSmall_stmt(Python3Parser.Small_stmtContext ctx) {
-    return super.visitSmall_stmt(ctx);
+    return cstArithParser.visitArith(ctx);
+//    return super.visitSmall_stmt(ctx);
   }
 
   @Override
   public AstNode visitExpr_stmt(Python3Parser.Expr_stmtContext ctx) {
-    return cstExprStmtParser.visitExpr_Stmt(ctx);
+    return cstArithParser.visitArith(ctx);
   }
 
   @Override
@@ -189,7 +194,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitImport_from(Python3Parser.Import_fromContext ctx) {
-    return super.visitImport_from(ctx);
+    return cstImportParser.visitImport_from(ctx);
   }
 
   @Override
@@ -214,7 +219,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitDotted_name(Python3Parser.Dotted_nameContext ctx) {
-    return super.visitDotted_name(ctx);
+    return cstAtomParser.visitDotted_name(ctx);
   }
 
   @Override
@@ -374,7 +379,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitTestlist_comp(Python3Parser.Testlist_compContext ctx) {
-    return super.visitTestlist_comp(ctx);
+    return cstCompParser.visitTestlist_comp(ctx);
   }
 
   @Override

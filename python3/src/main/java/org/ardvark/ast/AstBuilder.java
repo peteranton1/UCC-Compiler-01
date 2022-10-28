@@ -6,20 +6,27 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.ardvark.ast.NodeType.AGG;
+import static org.ardvark.ast.NodeType.DICT_OR_SET;
+
 @Slf4j
 public class AstBuilder {
 
   public AstNode toAST(ParseTree tree) {
 
     AstBuilderVisitor visitor = new AstBuilderVisitor();
-    ParseTree child = tree.getChild(0);
-    AstNode visit = visitor.visit(child);
-    List<AstNode> children = visit != null ? List.of(visit) : List.of();
+    AstNode aggNode = visitor.visit(tree);
+    List<AstNode> children;
+    if(AGG.equals(aggNode.getNodeType())){
+      children = aggNode.getChildren();
+    } else {
+      children = List.of(aggNode);
+    }
     return AstNode.builder()
-        .nodeType(NodeType.DICT_OR_SET)
-        .text("{}")
-        .children(children)
-        .build();
+          .nodeType(DICT_OR_SET)
+          .text(DICT_OR_SET.getText())
+          .children(children)
+          .build();
   }
 
   public void walk(AstNode astNode, StringBuilder builder) {
