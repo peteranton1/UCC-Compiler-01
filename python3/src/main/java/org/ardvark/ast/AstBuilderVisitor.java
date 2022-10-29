@@ -373,7 +373,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitPower(Python3Parser.PowerContext ctx) {
-    return super.visitPower(ctx);
+    return cstAtomParser.visitPower(ctx);
   }
 
   @Override

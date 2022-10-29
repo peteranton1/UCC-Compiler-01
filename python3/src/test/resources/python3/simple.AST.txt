@@ -56,7 +56,10 @@
             |     |  '- "Some other question"
             |     '- :
             |        |- al
-            |        '- q1
+            |        '- AtomPlus
+            |           |- q1
+            |           '- .
+            |              '- al
             |- :
             |  |- "Q1no"
             |  '- {}
@@ -65,7 +68,10 @@
             |     |  '- "Some other question"
             |     '- :
             |        |- al
-            |        '- q1
+            |        '- AtomPlus
+            |           |- q1
+            |           '- .
+            |              '- al
             |- :
             |  |- "Numeric"
             |  '- {}

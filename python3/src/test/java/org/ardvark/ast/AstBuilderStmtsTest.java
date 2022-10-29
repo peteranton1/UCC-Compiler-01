@@ -191,8 +191,9 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- compute
-              '- ()
+              '- AtomPlus
+                 |- compute
+                 '- ()
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -209,9 +210,10 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- compute
-              '- ()
-                 '- 23
+              '- AtomPlus
+                 |- compute
+                 '- ()
+                    '- 23
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -228,11 +230,12 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- compute
-              '- ()
-                 |- a
-                 |- 23
-                 '- "b"
+              '- AtomPlus
+                 |- compute
+                 '- ()
+                    |- a
+                    |- 23
+                    '- "b"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -250,15 +253,18 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            |- Stmt
-           |  |- data
-           |  '- .
-           |     '- Q1Yes
+           |  '- AtomPlus
+           |     |- data
+           |     '- .
+           |        '- Q1Yes
            '- Stmt
-              |- perform
-              '- ()
-                 |- data
-                 '- .
-                    '- Q1Yes
+              '- AtomPlus
+                 |- perform
+                 '- ()
+                    '- AtomPlus
+                       |- data
+                       '- .
+                          '- Q1Yes
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -276,22 +282,26 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- test
-              |- ()
-              |  |- data
-              |  |- .
-              |  |  '- Q1
-              |  '- []
-              |     '- or
-              |        |- "no"
-              |        '- "dkna"
+              |- AtomPlus
+              |  |- test
+              |  '- ()
+              |     |- AtomPlus
+              |     |  |- data
+              |     |  '- .
+              |     |     '- Q1
+              |     '- []
+              |        '- or
+              |           |- "no"
+              |           '- "dkna"
               '- Stmt
-                 |- compute
-                 '- ()
-                    |- data
-                    |- .
-                    |  '- Q1Yes
-                    '- "no"
+                 '- AtomPlus
+                    |- compute
+                    '- ()
+                       |- AtomPlus
+                       |  |- data
+                       |  '- .
+                       |     '- Q1Yes
+                       '- "no"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);

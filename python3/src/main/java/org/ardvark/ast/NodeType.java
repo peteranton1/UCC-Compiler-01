@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum NodeType {
   UNKNOWN("Unknown"),
   ADD("+"),
-  ATOM("Atom"),
+  ATOM_PLUS("AtomPlus"),
   AGG("Agg"),
   COLON(":"),
   DOTTED_NAME("DottedName"),
@@ -26,7 +26,6 @@ public enum NodeType {
   OP_OR("or"),
   OP_NOT("not"),
   PASS("Pass"),
-  POWER("Power"),
   STMT("Stmt"),
   STRING("String"),
   SUB("-"),

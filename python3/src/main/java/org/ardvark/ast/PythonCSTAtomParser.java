@@ -173,4 +173,21 @@ public class PythonCSTAtomParser {
     }
   }
 
+  public AstNode visitPower(ParserRuleContext ctx) {
+    StringBuilder errBuf = new StringBuilder();
+    errBuf.append("Error Recognising Power \n");
+    AstNode astNode = visitor.visitChildren(ctx);
+    if (!AGG.equals(astNode.getNodeType())) {
+      return astNode;
+    }
+    if (astNode.childCount() == 0) {
+      errBuf.append("Agg with zero children \n");
+      return panic.panic(ctx, errBuf);
+    }
+    return AstNode.builder()
+        .nodeType(ATOM_PLUS)
+        .text(ATOM_PLUS.getText())
+        .children(astNode.getChildren())
+        .build();
+  }
 }

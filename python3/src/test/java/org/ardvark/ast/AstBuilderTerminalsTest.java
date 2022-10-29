@@ -257,10 +257,13 @@ class AstBuilderTerminalsTest extends AstTestBase {
         '- {}
            '- Stmt
               '- =
-                 |- Atom
-                 |  '- survey
-                 '- Atom
-                    '- aaa
+                 |- survey
+                 '- AtomPlus
+                    |- aaa
+                    |- .
+                    |  '- bbb
+                    '- .
+                       '- ccc
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);

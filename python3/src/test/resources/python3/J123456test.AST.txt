@@ -61,7 +61,10 @@
    |        |     |  '- "Some other question"
    |        |     '- :
    |        |        |- al
-   |        |        '- q1
+   |        |        '- AtomPlus
+   |        |           |- q1
+   |        |           '- .
+   |        |              '- al
    |        '- :
    |           |- "Q1no"
    |           '- {}
@@ -70,49 +73,62 @@
    |              |  '- "Some other question"
    |              '- :
    |                 |- al
-   |                 '- q1
+   |                 '- AtomPlus
+   |                    |- q1
+   |                    '- .
+   |                       '- al
    '- Stmt
       |- Stmt
       |  '- =
       |     |- data
       |     '- survey
       |- Stmt
-      |  |- present
-      |  '- ()
-      |     |- data
-      |     '- .
-      |        '- Q1
-      |- Stmt
-      |  |- test
-      |  |- ()
-      |  |  |- data
-      |  |  |- .
-      |  |  |  '- Q1
-      |  |  '- []
-      |  |     '- or
-      |  |        |- "no"
-      |  |        '- "dkna"
-      |  '- Stmt
-      |     |- compute
+      |  '- AtomPlus
+      |     |- present
       |     '- ()
-      |        |- data
-      |        |- .
-      |        |  '- Q1Yes
-      |        '- "no"
+      |        '- AtomPlus
+      |           |- data
+      |           '- .
+      |              '- Q1
+      |- Stmt
+      |  |- AtomPlus
+      |  |  |- test
+      |  |  '- ()
+      |  |     |- AtomPlus
+      |  |     |  |- data
+      |  |     |  '- .
+      |  |     |     '- Q1
+      |  |     '- []
+      |  |        '- or
+      |  |           |- "no"
+      |  |           '- "dkna"
+      |  '- Stmt
+      |     '- AtomPlus
+      |        |- compute
+      |        '- ()
+      |           |- AtomPlus
+      |           |  |- data
+      |           |  '- .
+      |           |     '- Q1Yes
+      |           '- "no"
       '- Stmt
-         |- test
-         |- ()
-         |  |- data
-         |  |- .
-         |  |  '- Q1
-         |  '- []
-         |     '- or
-         |        |- "yes"
-         |        '- "maybe"
+         |- AtomPlus
+         |  |- test
+         |  '- ()
+         |     |- AtomPlus
+         |     |  |- data
+         |     |  '- .
+         |     |     '- Q1
+         |     '- []
+         |        '- or
+         |           |- "yes"
+         |           '- "maybe"
          '- Stmt
-            |- compute
-            '- ()
-               |- data
-               |- .
-               |  '- Q1No
-               '- "yes"
+            '- AtomPlus
+               |- compute
+               '- ()
+                  |- AtomPlus
+                  |  |- data
+                  |  '- .
+                  |     '- Q1No
+                  '- "yes"
