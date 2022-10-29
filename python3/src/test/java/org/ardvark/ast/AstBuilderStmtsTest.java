@@ -8,6 +8,179 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AstBuilderStmtsTest  extends AstTestBase  {
 
   @Test
+  void shouldDoIfWith1Literal() {
+    String input = """
+        if(false):
+          pass
+        """;
+    ParseTree tree = parseSource(input);
+    //printTree(input);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              |- []
+              |  '- false
+              '- Stmt
+                 '- Pass
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void shouldDoIfWithEquivExpr() {
+    String[] compOps = {
+        "<",
+        ">",
+        "==",
+        ">=",
+        "<=",
+        "<>",
+        "!=",
+        "in",
+        "not in",
+        "is",
+        "is not"
+    };
+    String inputTemplate = """
+        if(x %s x):
+          pass
+        """;
+    for (String compOp : compOps){
+      String input = String.format(inputTemplate, compOp);
+      ParseTree tree = parseSource(input);
+      //printTree(input);
+      AstNode actualNode = new AstBuilder().toAST(tree);
+      String expectedTemplate = """
+          '- {}
+             '- Stmt
+                |- []
+                |  |- x
+                |  |- %s
+                |  '- x
+                '- Stmt
+                   '- Pass
+          """;
+      String expected = String.format(expectedTemplate, compOp);
+      String actual = nodeToString(actualNode);
+      assertEquals(expected, actual);
+    }
+  }
+
+  @Test
+  void shouldDoIfWithOrAndExpr1Pair() {
+    String[] compOps = {
+        "or",
+        "and",
+    };
+    String inputTemplate = """
+        if(x %s y):
+          pass
+        """;
+    for (String compOp : compOps){
+      String input = String.format(inputTemplate, compOp);
+      ParseTree tree = parseSource(input);
+      //printTree(input);
+      AstNode actualNode = new AstBuilder().toAST(tree);
+      String expectedTemplate = """
+          '- {}
+             '- Stmt
+                |- []
+                |  '- %s
+                |     |- x
+                |     '- y
+                '- Stmt
+                   '- Pass
+          """;
+      String expected = String.format(expectedTemplate, compOp);
+      String actual = nodeToString(actualNode);
+      assertEquals(expected, actual);
+    }
+  }
+
+  @Test
+  void shouldDoIfWithOrAndExpr3Pair() {
+    String[] combineOps = {
+        "or",
+        "and",
+    };
+    String inputTemplate = """
+        if(a %s b %s c %s d):
+          pass
+        """;
+    for (String combineOp : combineOps){
+      String input = String.format(inputTemplate, combineOp, combineOp, combineOp);
+      ParseTree tree = parseSource(input);
+      //printTree(input);
+      AstNode actualNode = new AstBuilder().toAST(tree);
+      String expectedTemplate = """
+          '- {}
+             '- Stmt
+                |- []
+                |  '- %s
+                |     |- a
+                |     |- b
+                |     |- c
+                |     '- d
+                '- Stmt
+                   '- Pass
+          """;
+      String expected = String.format(expectedTemplate, combineOp);
+      String actual = nodeToString(actualNode);
+      assertEquals(expected, actual);
+    }
+  }
+
+  @Test
+  void shouldDoIfWithOrAndNot() {
+    String input = """
+        if(not x or y and z):
+          pass
+        """;
+    ParseTree tree = parseSource(input);
+    //printTree(input);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              |- []
+              |  '- or
+              |     |- not
+              |     |  '- x
+              |     '- and
+              |        |- y
+              |        '- z
+              '- Stmt
+                 '- Pass
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void shouldDoIfWithNotExpr() {
+    String input = """
+        if(not x):
+          pass
+        """;
+    ParseTree tree = parseSource(input);
+    //printTree(input);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              |- []
+              |  '- not
+              |     '- x
+              '- Stmt
+                 '- Pass
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
   void shouldDoCallWith0Args() {
     String input = """
         compute()
@@ -109,8 +282,9 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
               |  |- .
               |  |  '- Q1
               |  '- []
-              |     |- "no"
-              |     '- "dkna"
+              |     '- or
+              |        |- "no"
+              |        '- "dkna"
               '- Stmt
                  |- compute
                  '- ()

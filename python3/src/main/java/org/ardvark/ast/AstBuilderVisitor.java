@@ -14,6 +14,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
   private final PythonCSTCompParser cstCompParser;
   private final PythonCSTCallParser cstCallParser;
   private final PythonCSTDictOrSetParser cstDictOrSetMakerParser;
+  private final PythonCSTIfStmtParser cstIfStmtParser;
   private final PythonCSTImportParser cstImportParser;
   private final PythonCSTStmtParser cstStmtParser;
   private final PythonCSTArithParser cstArithParser;
@@ -25,6 +26,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
     cstCallParser = new PythonCSTCallParser(cstPanic, this);
     cstDictOrSetMakerParser = new PythonCSTDictOrSetParser(cstPanic, this);
     cstImportParser = new PythonCSTImportParser(cstPanic, this);
+    cstIfStmtParser = new PythonCSTIfStmtParser(cstPanic, this);
     cstStmtParser = new PythonCSTStmtParser(cstPanic, this);
     cstArithParser = new PythonCSTArithParser(cstPanic, this);
   }
@@ -151,7 +153,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitPass_stmt(Python3Parser.Pass_stmtContext ctx) {
-    return super.visitPass_stmt(ctx);
+    return cstIfStmtParser.visitPass_stmt(ctx);
   }
 
   @Override
@@ -306,17 +308,17 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitOr_test(Python3Parser.Or_testContext ctx) {
-    return super.visitOr_test(ctx);
+    return cstIfStmtParser.visitOr_test(ctx);
   }
 
   @Override
   public AstNode visitAnd_test(Python3Parser.And_testContext ctx) {
-    return super.visitAnd_test(ctx);
+    return cstIfStmtParser.visitAnd_test(ctx);
   }
 
   @Override
   public AstNode visitNot_test(Python3Parser.Not_testContext ctx) {
-    return super.visitNot_test(ctx);
+    return cstIfStmtParser.visitNot_test(ctx);
   }
 
   @Override
@@ -326,7 +328,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitComp_op(Python3Parser.Comp_opContext ctx) {
-    return super.visitComp_op(ctx);
+    return cstIfStmtParser.visitComp_op(ctx);
   }
 
   @Override

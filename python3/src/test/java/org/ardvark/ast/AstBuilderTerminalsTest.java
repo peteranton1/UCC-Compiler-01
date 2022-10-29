@@ -246,6 +246,27 @@ class AstBuilderTerminalsTest extends AstTestBase {
   }
 
   @Test
+  void assignDottedNameExpr() {
+    String source = "survey = aaa.bbb.ccc\n";
+    String expected0 = "survey=aaa.bbb.ccc\n" +
+        "<EOF>";
+    ParseTree tree = parseSource(source, expected0);
+    //printTree(source);
+    AstNode actualNode = new AstBuilder().toAST(tree);
+    String expected = """
+        '- {}
+           '- Stmt
+              '- =
+                 |- Atom
+                 |  '- survey
+                 '- Atom
+                    '- aaa
+        """;
+    String actual = nodeToString(actualNode);
+    assertEquals(expected, actual);
+  }
+
+  @Test
   void colonNameStrExpr() {
     String source = "survey = { a : \"A\" }\n";
     String expected0 = "survey={a:\"A\"}\n" +

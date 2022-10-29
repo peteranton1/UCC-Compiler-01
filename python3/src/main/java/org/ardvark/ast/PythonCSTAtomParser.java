@@ -29,10 +29,10 @@ public class PythonCSTAtomParser {
     errBuf.append("visitDottedName \n");
     List<AstNode> aggChildren = new ArrayList<>();
     AstNode astNode;
-    for(int i = 0; i < ctx.getChildCount(); i++) {
+    for (int i = 0; i < ctx.getChildCount(); i++) {
       astNode = parseName(ctx.getChild(i), errBuf);
-      if(astNode != null &&
-          !".".equals(astNode.getText())){
+      if (astNode != null &&
+          !"." .equals(astNode.getText())) {
         aggChildren.add(astNode);
       }
     }
@@ -54,17 +54,17 @@ public class PythonCSTAtomParser {
       char ch = text.charAt(0);
       if ('(' == ch) {
         astNode = visitor.visitChildren(ctx);
-        if(astNode == null) {
+        if (astNode == null) {
           return emptyNode(CALL_ARG);
         }
       } else if ('[' == ch) {
         astNode = visitor.visitChildren(ctx);
-        if(astNode == null) {
+        if (astNode == null) {
           return emptyNode(LIST);
         }
       } else if ('{' == ch) {
         astNode = visitor.visitChildren(ctx);
-        if(astNode == null) {
+        if (astNode == null) {
           return emptyNode(DICT_OR_SET);
         }
       } else if (Character.isDigit(ch)) {
