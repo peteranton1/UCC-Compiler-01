@@ -12,6 +12,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   private final PythonCSTAtomParser cstAtomParser;
   private final PythonCSTCompParser cstCompParser;
+  private final PythonCSTCallParser cstCallParser;
   private final PythonCSTDictOrSetParser cstDictOrSetMakerParser;
   private final PythonCSTImportParser cstImportParser;
   private final PythonCSTStmtParser cstStmtParser;
@@ -21,6 +22,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
     CstPanic cstPanic = new CstPanic();
     cstAtomParser = new PythonCSTAtomParser(cstPanic, this);
     cstCompParser = new PythonCSTCompParser(cstPanic, this);
+    cstCallParser = new PythonCSTCallParser(cstPanic, this);
     cstDictOrSetMakerParser = new PythonCSTDictOrSetParser(cstPanic, this);
     cstImportParser = new PythonCSTImportParser(cstPanic, this);
     cstStmtParser = new PythonCSTStmtParser(cstPanic, this);
@@ -384,7 +386,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitTrailer(Python3Parser.TrailerContext ctx) {
-    return super.visitTrailer(ctx);
+    return cstCallParser.visitTrailer(ctx);
   }
 
   @Override

@@ -53,9 +53,10 @@ public class PythonCSTAtomParser {
       String text = child0.getText();
       char ch = text.charAt(0);
       if ('(' == ch) {
-        // Implement
-        errBuf.append("'(' ( yield_expr | testlist_comp )? ')' \n");
-        return panic.panic(child0, errBuf);
+        astNode = visitor.visitChildren(ctx);
+        if(astNode == null) {
+          return emptyNode(CALL_ARG);
+        }
       } else if ('[' == ch) {
         astNode = visitor.visitChildren(ctx);
         if(astNode == null) {

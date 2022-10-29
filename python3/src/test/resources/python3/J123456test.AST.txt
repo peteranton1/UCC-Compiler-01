@@ -78,24 +78,39 @@
       |     '- survey
       |- Stmt
       |  |- present
-      |  '- data
+      |  '- ()
+      |     |- data
+      |     '- .
+      |        '- Q1
       |- Stmt
       |  |- test
-      |  |- data
-      |  |- []
-      |  |  |- "no"
-      |  |  '- "dkna"
+      |  |- ()
+      |  |  |- data
+      |  |  |- .
+      |  |  |  '- Q1
+      |  |  '- []
+      |  |     |- "no"
+      |  |     '- "dkna"
       |  '- Stmt
       |     |- compute
-      |     |- data
-      |     '- "no"
+      |     '- ()
+      |        |- data
+      |        |- .
+      |        |  '- Q1Yes
+      |        '- "no"
       '- Stmt
          |- test
-         |- data
-         |- []
-         |  |- "yes"
-         |  '- "maybe"
+         |- ()
+         |  |- data
+         |  |- .
+         |  |  '- Q1
+         |  '- []
+         |     |- "yes"
+         |     '- "maybe"
          '- Stmt
             |- compute
-            |- data
-            '- "yes"
+            '- ()
+               |- data
+               |- .
+               |  '- Q1No
+               '- "yes"

@@ -23,6 +23,9 @@ public enum NodeType {
   STMT("Stmt"),
   STRING("String"),
   SUB("-"),
+  CALL_ARG("()"),
+  CALL_SUB("[]"),
+  CALL_DOT("."),
   LIST("[]");
 
   private final String text;
