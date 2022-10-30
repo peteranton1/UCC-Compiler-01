@@ -324,6 +324,7 @@ public class AstBuilderIfsTest extends AstTestBase  {
           pass
         elif (b):
           pass
+          pass
         """,
         """
         if (a):
@@ -351,6 +352,8 @@ public class AstBuilderIfsTest extends AstTestBase  {
                     |  '- []
                     |     '- b
                     '- IfSuite
+                       |- Stmt
+                       |  '- Pass
                        '- Stmt
                           '- Pass
         """,
