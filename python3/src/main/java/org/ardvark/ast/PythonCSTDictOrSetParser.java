@@ -25,13 +25,10 @@ public class PythonCSTDictOrSetParser {
   ///                      ('=' (yield_expr|testlist_star_expr))*)
      */
   public AstNode visitDictOrSet(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising DictOrSet \n");
-    int childCount = ctx.getChildCount();
-    if (childCount == 1) {
+    if (ctx.getChildCount() == 1) {
       return visitor.visitChildren(ctx);
     }
-    return parseDictOrSet(ctx, errBuf);
+    return parseDictOrSet(ctx, baseParser.errBuf("DictOrSet"));
   }
 
   public AstNode parseDictOrSet(ParserRuleContext ctx,

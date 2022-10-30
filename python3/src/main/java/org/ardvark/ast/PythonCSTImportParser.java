@@ -24,9 +24,7 @@ public class PythonCSTImportParser {
     /// simple_stmt: small_stmt (';' small_stmt)* [';'] NEWLINE
      */
   public AstNode visitImport_from(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Import_from \n");
-    return parseImportFrom(ctx, errBuf);
+    return parseImportFrom(ctx, baseParser.errBuf("Import_from"));
   }
 
   public AstNode parseImportFrom(ParserRuleContext ctx,

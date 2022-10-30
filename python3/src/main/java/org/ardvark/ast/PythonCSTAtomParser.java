@@ -20,9 +20,7 @@ public class PythonCSTAtomParser {
   }
 
   public AstNode visitDotted_name(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising DottedName \n");
-    return parseDottedName(ctx, errBuf);
+    return parseDottedName(ctx, baseParser.errBuf("DottedName"));
   }
 
   public AstNode parseDottedName(ParserRuleContext ctx,

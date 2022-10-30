@@ -130,13 +130,12 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitSmall_stmt(Python3Parser.Small_stmtContext ctx) {
-    return cstArithParser.visitArith(ctx);
-//    return super.visitSmall_stmt(ctx);
+    return cstArithParser.visitSmall_stmt(ctx);
   }
 
   @Override
   public AstNode visitExpr_stmt(Python3Parser.Expr_stmtContext ctx) {
-    return cstArithParser.visitArith(ctx);
+    return cstArithParser.visitExpr_stmt(ctx);
   }
 
   @Override
@@ -366,7 +365,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitTerm(Python3Parser.TermContext ctx) {
-    return cstArithParser.visitArith(ctx);
+    return cstArithParser.visitTerm(ctx);
   }
 
   @Override

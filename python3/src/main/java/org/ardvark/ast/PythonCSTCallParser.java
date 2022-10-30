@@ -24,9 +24,7 @@ public class PythonCSTCallParser {
     /// trailer: '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME
      */
   public AstNode visitTrailer(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Trailer \n");
-    return parseTrailer(ctx, errBuf);
+    return parseTrailer(ctx, baseParser.errBuf("Trailer"));
   }
 
   public AstNode parseTrailer(ParserRuleContext ctx,

@@ -22,9 +22,49 @@ public class PythonCSTIfStmtParser {
     /// pass_stmt: 'pass'
      */
   public AstNode visitPass_stmt(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Pass \n");
-    return parsePass(ctx, errBuf);
+    return parsePass(ctx, baseParser.errBuf("Pass"));
+  }
+
+  /*
+  /// comp_op: '<'|'>'|'=='|'>='|'<='|'<>'|'!='|'in'|'not' 'in'|'is'|'is' 'not'
+   */
+  public AstNode visitComp_op(ParserRuleContext ctx) {
+    return parseCompOp(ctx, baseParser.errBuf("Comp_op"));
+  }
+
+  /*
+  /// comp_if: 'if' test_nocond [comp_iter]
+   */
+  public AstNode visitComp_if(ParserRuleContext ctx) {
+    return parseCompIf(ctx, baseParser.errBuf("Comp_if"));
+  }
+
+  /*
+  /// if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
+   */
+  public AstNode visitIf_stmt(ParserRuleContext ctx) {
+    return parseIfStmt(ctx, baseParser.errBuf("If_stmt"));
+  }
+
+  /*
+  /// or_test: and_test ('or' and_test)*
+   */
+  public AstNode visitOr_test(ParserRuleContext ctx) {
+    return parseTestOrAnd(ctx, baseParser.errBuf("Or_test"), OP_OR);
+  }
+
+  /*
+  /// and_test: not_test ('and' not_test)*
+   */
+  public AstNode visitAnd_test(ParserRuleContext ctx) {
+    return parseTestOrAnd(ctx, baseParser.errBuf("And_test"), OP_AND);
+  }
+
+  /*
+  /// not_test: 'not' not_test | comparison
+   */
+  public AstNode visitNot_test(ParserRuleContext ctx) {
+    return parseTestNot(ctx, baseParser.errBuf("Not"));
   }
 
   public AstNode parsePass(ParserRuleContext ctx,
@@ -36,61 +76,6 @@ public class PythonCSTIfStmtParser {
         .nodeType(PASS)
         .text(PASS.getText())
         .build();
-  }
-
-  /*
-  /// comp_op: '<'|'>'|'=='|'>='|'<='|'<>'|'!='|'in'|'not' 'in'|'is'|'is' 'not'
-   */
-  public AstNode visitComp_op(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Comp_op \n");
-    return parseCompOp(ctx, errBuf);
-  }
-
-  /*
-  /// comp_if: 'if' test_nocond [comp_iter]
-   */
-  public AstNode visitComp_if(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Comp_if \n");
-    return parseCompIf(ctx, errBuf);
-  }
-
-  /*
-  /// if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
-   */
-  public AstNode visitIf_stmt(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising If_stmt \n");
-    return parseIfStmt(ctx, errBuf);
-  }
-
-  /*
-  /// or_test: and_test ('or' and_test)*
-   */
-
-  public AstNode visitOr_test(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Or_test \n");
-    return parseTestOrAnd(ctx, errBuf, OP_OR);
-  }
-  /*
-  /// and_test: not_test ('and' not_test)*
-   */
-
-  public AstNode visitAnd_test(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising And_test \n");
-    return parseTestOrAnd(ctx, errBuf, OP_AND);
-  }
-  /*
-  /// not_test: 'not' not_test | comparison
-   */
-
-  public AstNode visitNot_test(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Not_test \n");
-    return parseTestNot(ctx, errBuf);
   }
 
   public AstNode parseIfStmt(ParserRuleContext ctx, StringBuilder errBuf) {

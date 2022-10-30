@@ -23,9 +23,7 @@ public class PythonCSTCompParser {
     /// testlist_comp: test ( comp_for | (',' test)* [','] )
      */
   public AstNode visitTestlist_comp(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Testlist_comp \n");
-    return parseComp(ctx, errBuf);
+    return parseComp(ctx, baseParser.errBuf("Testlist_comp"));
   }
 
   public AstNode parseComp(ParserRuleContext ctx,

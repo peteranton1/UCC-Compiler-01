@@ -23,18 +23,14 @@ public class PythonCSTDefParser {
     /// funcdef: 'def' NAME parameters ['->' test] ':' suite
      */
   public AstNode visitFuncdef(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Funcdef \n");
-    return parseFuncdef(ctx, errBuf);
+    return parseFuncdef(ctx, baseParser.errBuf("Funcdef"));
   }
 
   /*
   /// parameters: '(' [typedargslist] ')'
    */
   public AstNode visitParameters(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Parameters \n");
-    return parseParameters(ctx, errBuf);
+    return parseParameters(ctx, baseParser.errBuf("Parameters"));
   }
 
   /*
@@ -43,18 +39,14 @@ public class PythonCSTDefParser {
   ///              |  '*' [tfpdef] (',' tfpdef ['=' test])* [',' '**' tfpdef] | '**' tfpdef)
    */
   public AstNode visitTypedargslist(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Typedargslist \n");
-    return parseTypedargslist(ctx, errBuf);
+    return parseTypedargslist(ctx, baseParser.errBuf("Typedargslist"));
   }
 
   /*
   /// tfpdef: NAME [':' test]
    */
   public AstNode visitTfpdef(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Tfpdef \n");
-    return parseTfpdef(ctx, errBuf);
+    return parseTfpdef(ctx, baseParser.errBuf("Tfpdef"));
   }
 
   public AstNode parseTfpdef(ParserRuleContext ctx,

@@ -14,6 +14,12 @@ public class PythonCSTBaseParser {
   public final CstPanic panic;
   private final StringUtils stringUtils = new StringUtils();
 
+  public StringBuilder errBuf(String name) {
+    StringBuilder errBuf = new StringBuilder();
+    errBuf.append("Error Recognising ").append(name).append(" \n");
+    return errBuf;
+  }
+
   public AstNode parseNumber(ParseTree tree, StringBuilder errBuf) {
     errBuf.append("parseNumber \n");
     char ch = tree.getText().charAt(0);

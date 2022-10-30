@@ -19,30 +19,39 @@ public class PythonCSTArithParser {
     this.baseParser = visitor.baseParser;
   }
 
+  public AstNode visitSmall_stmt(ParserRuleContext ctx) {
+    return parseArith(ctx, baseParser.errBuf("Small_stmt"));
+  }
+
+  public AstNode visitExpr_stmt(ParserRuleContext ctx) {
+    return parseArith(ctx, baseParser.errBuf("Expr_stmt"));
+  }
+
   /*
-      arith_expr
-         : term ( '+' term
-                | '-' term
-                )*
-         ;
-     */
+  /// arith_expr: term (('+'|'-') term)*
+   */
   public AstNode visitArith(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Arith \n");
-    int childCount = ctx.getChildCount();
-    if (childCount == 1) {
-      return visitor.visitChildren(ctx);
-    } else if (childCount > 2){
-      return parseArith(ctx, errBuf);
-    }
-    errBuf.append("unknown 1 \n");
-    String ctx1 = new Builder.Tree("").toStringASCII(ctx);
-    return baseParser.panic.panic(ctx1, errBuf);
+    return parseArith(ctx, baseParser.errBuf("Arith"));
+  }
+
+  /*
+  /// term: factor (('*'|'/'|'%'|'//') factor)*
+   */
+  public AstNode visitTerm(ParserRuleContext ctx) {
+    return parseArith(ctx, baseParser.errBuf("Term"));
   }
 
   public AstNode parseArith(ParserRuleContext ctx,
                             StringBuilder errBuf) {
     errBuf.append("parseArith \n");
+    int childCount = ctx.getChildCount();
+    if (childCount == 0) {
+      errBuf.append("unknown 1 \n");
+      String ctx1 = new Builder.Tree("").toStringASCII(ctx);
+      return baseParser.panic.panic(ctx1, errBuf);
+    } else if (childCount == 1){
+      return visitor.visitChildren(ctx);
+    }
     List<ParseTree> origChildren = ctx.children;
     AstNode aggNode = visitor.visitChildren(ctx);
     List<AstNode> aggChildren = new ArrayList<>(aggNode.getChildren());
@@ -79,5 +88,4 @@ public class PythonCSTArithParser {
         "unexpected size: %d \n", aggChildren.size()));
     return baseParser.panic.panic(ctx, errBuf);
   }
-
 }

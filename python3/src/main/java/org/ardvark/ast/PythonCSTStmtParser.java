@@ -19,13 +19,13 @@ public class PythonCSTStmtParser {
     this.baseParser = visitor.baseParser;
   }
 
+
+
   /*
     /// stmt: simple_stmt | compound_stmt
      */
   public AstNode visitStmt(ParserRuleContext ctx) {
-    StringBuilder errBuf = new StringBuilder();
-    errBuf.append("Error Recognising Stmt \n");
-    return parseSimpleStmt(ctx, errBuf);
+    return parseSimpleStmt(ctx, baseParser.errBuf("Stmt"));
   }
 
   public AstNode parseSimpleStmt(ParserRuleContext ctx,
