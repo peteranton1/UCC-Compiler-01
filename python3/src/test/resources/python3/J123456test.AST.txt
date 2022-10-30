@@ -93,46 +93,52 @@
          |           '- .
          |              '- Q1
          |- Stmt
-         |  '- if
-         |     |- AtomPlus
-         |     |  |- test
-         |     |  '- ()
-         |     |     |- AtomPlus
-         |     |     |  |- data
-         |     |     |  '- .
-         |     |     |     '- Q1
-         |     |     '- []
-         |     |        '- or
-         |     |           |- "no"
-         |     |           '- "dkna"
-         |     '- Stmt
-         |        '- AtomPlus
-         |           |- compute
-         |           '- ()
-         |              |- AtomPlus
-         |              |  |- data
-         |              |  '- .
-         |              |     '- Q1Yes
-         |              '- "no"
+         |  '- IfBlock
+         |     '- if
+         |        |- IfCondition
+         |        |  '- AtomPlus
+         |        |     |- test
+         |        |     '- ()
+         |        |        |- AtomPlus
+         |        |        |  |- data
+         |        |        |  '- .
+         |        |        |     '- Q1
+         |        |        '- []
+         |        |           '- or
+         |        |              |- "no"
+         |        |              '- "dkna"
+         |        '- IfSuite
+         |           '- Stmt
+         |              '- AtomPlus
+         |                 |- compute
+         |                 '- ()
+         |                    |- AtomPlus
+         |                    |  |- data
+         |                    |  '- .
+         |                    |     '- Q1Yes
+         |                    '- "no"
          '- Stmt
-            '- if
-               |- AtomPlus
-               |  |- test
-               |  '- ()
-               |     |- AtomPlus
-               |     |  |- data
-               |     |  '- .
-               |     |     '- Q1
-               |     '- []
-               |        '- or
-               |           |- "yes"
-               |           '- "maybe"
-               '- Stmt
-                  '- AtomPlus
-                     |- compute
-                     '- ()
-                        |- AtomPlus
-                        |  |- data
-                        |  '- .
-                        |     '- Q1No
-                        '- "yes"
+            '- IfBlock
+               '- if
+                  |- IfCondition
+                  |  '- AtomPlus
+                  |     |- test
+                  |     '- ()
+                  |        |- AtomPlus
+                  |        |  |- data
+                  |        |  '- .
+                  |        |     '- Q1
+                  |        '- []
+                  |           '- or
+                  |              |- "yes"
+                  |              '- "maybe"
+                  '- IfSuite
+                     '- Stmt
+                        '- AtomPlus
+                           |- compute
+                           '- ()
+                              |- AtomPlus
+                              |  |- data
+                              |  '- .
+                              |     '- Q1No
+                              '- "yes"

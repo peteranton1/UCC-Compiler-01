@@ -2,7 +2,9 @@ package org.ardvark.ast;
 
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.ardvark.ast.NodeType.*;
@@ -80,43 +82,108 @@ public class PythonCSTIfStmtParser {
 
   public AstNode parseIfStmt(ParserRuleContext ctx, StringBuilder errBuf) {
     errBuf.append("parseIfStmt \n");
+    return parseIfBlock(ctx, errBuf);
+  }
 
+  public AstNode parseCompIf(ParserRuleContext ctx, StringBuilder errBuf) {
+    errBuf.append("parseCompIf \n");
+    return parseIfBlock(ctx, errBuf);
+  }
+
+  public AstNode parseIfBlock(ParserRuleContext ctx, StringBuilder errBuf) {
     int childCount = ctx.getChildCount();
-    if (childCount <= 0) {
-      errBuf.append("parseIfStmt : wrong childCount : ")
-          .append(childCount);
-      return baseParser.panic.panic(ctx, errBuf);
+    checkCount(ctx, errBuf, 0, childCount);
+    List<AstNode> ifChildren = new ArrayList<>();
+
+    int pos = 0;
+    while (pos +2 < ctx.getChildCount()) {
+      AstNode anIf = findIfElifElseNode(ctx, errBuf, pos);
+      ifChildren.add(anIf);
+      pos += 4;
     }
-    AstNode astNode = visitor.visitChildren(ctx);
-    List<AstNode> children ;
-    if(AGG.equals(astNode.getNodeType())){
+
+    return AstNode.builder()
+        .nodeType(OP_IF_BLOCK)
+        .text(OP_IF_BLOCK.getText())
+        .children(ifChildren)
+        .build();
+  }
+
+  /*
+    /// if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
+   */
+  public AstNode findIfElifElseNode(ParserRuleContext ctx,
+                                    StringBuilder errBuf,
+                                    int pos) {
+    int childCount = ctx.getChildCount();
+    checkCount(ctx, errBuf, pos + 2, childCount);
+
+    String kwd = ctx.getChild(pos).getText();
+    checkKwd(ctx, errBuf, kwd);
+
+    List<AstNode> children;
+    NodeType nodeType = NodeType.textValueOf(kwd);
+    if (OP_IF.equals(nodeType) || OP_ELIF.equals(nodeType)) {
+      checkCount(ctx, errBuf, pos + 3, childCount);
+      String colon = ctx.getChild(pos + 2).getText();
+      checkKwd(ctx, errBuf, colon);
+      AstNode testNode = visitDeaggregate(ctx.getChild(pos + 1), OP_IF_CONDITION);
+      AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 3), OP_IF_SUITE);
+      children = List.of(testNode, suiteNode);
+    } else {
+      String colon = ctx.getChild(pos + 1).getText();
+      checkKwd(ctx, errBuf, colon);
+      AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 2), OP_IF_SUITE);
+      children = List.of(suiteNode);
+    }
+    return AstNode.builder()
+        .nodeType(nodeType)
+        .text(nodeType.getText())
+        .children(children)
+        .build();
+  }
+
+  public AstNode visitDeaggregate(ParseTree child,
+                                  NodeType nodeType) {
+    AstNode astNode = visitor.visit(child);
+    List<AstNode> children;
+    if (AGG.equals(astNode.getNodeType())) {
       children = astNode.getChildren();
     } else {
       children = List.of(astNode);
     }
     return AstNode.builder()
-        .nodeType(OP_IF)
-        .text(OP_IF.getText())
+        .nodeType(nodeType)
+        .text(nodeType.getText())
         .children(children)
         .build();
   }
 
-  public AstNode parseCompIf(ParserRuleContext ctx, StringBuilder errBuf) {
-    errBuf.append("parseCompIf \n");
-
-    int childCount = ctx.getChildCount();
-    if (childCount <= 0 || childCount > 3) {
-      errBuf.append("parseCompIf : wrong childCount : ")
-          .append(childCount);
-      return baseParser.panic.panic(ctx, errBuf);
+  public void checkCount(ParserRuleContext ctx,
+                         StringBuilder errBuf,
+                         int expectedCount,
+                         int childCount) {
+    if (expectedCount >= childCount) {
+      errBuf
+          .append("checkCount : unexpected childCount : ")
+          .append(childCount)
+          .append(" : expected : ")
+          .append(expectedCount)
+      ;
+      baseParser.panic.panic(ctx, errBuf);
     }
-    AstNode astNode = visitor.visitChildren(ctx);
-    return AstNode.builder()
-        .nodeType(OP_IF)
-        .text(OP_IF.getText())
-        .children(List.of(astNode))
-        .build();
   }
+
+  public void checkKwd(ParserRuleContext ctx,
+                       StringBuilder errBuf,
+                       String kwd) {
+    NodeType nodeType = NodeType.textValueOf(kwd);
+    if (UNKNOWN.equals(nodeType)) {
+      errBuf.append("checkKwd : unexpected : ").append(kwd);
+      baseParser.panic.panic(ctx, errBuf);
+    }
+  }
+
 
   public AstNode parseTestNot(ParserRuleContext ctx,
                               StringBuilder errBuf) {
@@ -140,7 +207,7 @@ public class PythonCSTIfStmtParser {
   }
 
   public AstNode parseTestOrAnd(ParserRuleContext ctx,
-                              StringBuilder errBuf,
+                                StringBuilder errBuf,
                                 NodeType nodeType) {
     errBuf.append("parseTestOrAnd ")
         .append(nodeType).append(" \n");
