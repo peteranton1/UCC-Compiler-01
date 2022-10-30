@@ -147,6 +147,7 @@ class AstBuilderTerminalsTest extends AstTestBase {
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
   }
+
   @Test
   void literalTrueAsAstNode() {
     String source = "True\n";
@@ -243,6 +244,33 @@ class AstBuilderTerminalsTest extends AstTestBase {
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
+  }
+
+  @Test
+  void assignIntExprWhenOps() {
+    String[] ops = {
+        "-",
+        "+",
+        "~"
+    };
+    String inputTemplate = "anumber = %s 5\n";
+    String expectedTemplate = """
+        '- {}
+           '- Stmt
+              '- =
+                 |- anumber
+                 '- %s
+                    '- 5
+        """;
+    for (String op : ops) {
+      String input = String.format(inputTemplate, op);
+      String expected = String.format(expectedTemplate, op);
+      ParseTree tree = parseSource(input);
+      //printTree(source);
+      AstNode actualNode = new AstBuilder().toAST(tree);
+      String actual = nodeToString(actualNode);
+      assertEquals(expected, actual);
+    }
   }
 
   @Test

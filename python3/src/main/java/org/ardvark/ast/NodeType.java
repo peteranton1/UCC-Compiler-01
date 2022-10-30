@@ -31,9 +31,11 @@ public enum NodeType {
   OP_OR("or"),
   OP_NOT("not"),
   OP_IF_BLOCK("IfBlock"),
-  OP_IF_SUITE("IfSuite"),
-  OP_IF_CONDITION("IfCondition"),
+  OP_WHILE_BLOCK("WhileBlock"),
+  OP_SUITE("Suite"),
+  OP_CONDITION("Condition"),
   OP_IF("if"),
+  OP_WHILE("while"),
   OP_ELIF("elif"),
   OP_ELSE("else"),
   PARAMS("params"),
@@ -41,14 +43,15 @@ public enum NodeType {
   PASS("Pass"),
   STMT("Stmt"),
   STRING("String"),
-  SUB("-")
+  SUB("-"),
+  TILDE("~")
   ;
 
   private final String text;
 
   public static NodeType textValueOf(String text) {
-    for(NodeType nodeType: values()) {
-      if(nodeType.getText().equals(text)){
+    for (NodeType nodeType : values()) {
+      if (nodeType.getText().equals(text)) {
         return nodeType;
       }
     }

@@ -127,13 +127,13 @@ public class PythonCSTIfStmtParser {
       checkCount(ctx, errBuf, pos + 3, childCount);
       String colon = ctx.getChild(pos + 2).getText();
       checkKwd(ctx, errBuf, colon);
-      AstNode testNode = visitDeaggregate(ctx.getChild(pos + 1), OP_IF_CONDITION);
-      AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 3), OP_IF_SUITE);
+      AstNode testNode = visitDeaggregate(ctx.getChild(pos + 1), OP_CONDITION);
+      AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 3), OP_SUITE);
       children = List.of(testNode, suiteNode);
     } else {
       String colon = ctx.getChild(pos + 1).getText();
       checkKwd(ctx, errBuf, colon);
-      AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 2), OP_IF_SUITE);
+      AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 2), OP_SUITE);
       children = List.of(suiteNode);
     }
     return AstNode.builder()

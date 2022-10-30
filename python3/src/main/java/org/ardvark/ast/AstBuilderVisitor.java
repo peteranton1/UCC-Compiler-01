@@ -19,6 +19,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
   private final PythonCSTIfStmtParser cstIfStmtParser;
   private final PythonCSTImportParser cstImportParser;
   private final PythonCSTStmtParser cstStmtParser;
+  private final PythonCSTWhileParser cstWhileParser;
   private final PythonCSTArithParser cstArithParser;
 
   public AstBuilderVisitor() {
@@ -31,6 +32,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
     cstImportParser = new PythonCSTImportParser(this);
     cstIfStmtParser = new PythonCSTIfStmtParser(this);
     cstStmtParser = new PythonCSTStmtParser(this);
+    cstWhileParser = new PythonCSTWhileParser(this);
     cstArithParser = new PythonCSTArithParser(this);
   }
 
@@ -255,7 +257,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitWhile_stmt(Python3Parser.While_stmtContext ctx) {
-    return super.visitWhile_stmt(ctx);
+    return cstWhileParser.visitWhile_stmt(ctx);
   }
 
   @Override
@@ -370,7 +372,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitFactor(Python3Parser.FactorContext ctx) {
-    return super.visitFactor(ctx);
+    return cstArithParser.visitFactor(ctx);
   }
 
   @Override

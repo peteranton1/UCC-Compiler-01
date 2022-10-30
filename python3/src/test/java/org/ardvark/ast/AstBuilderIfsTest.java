@@ -21,10 +21,10 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  '- if
-                    |- IfCondition
+                    |- Condition
                     |  '- []
                     |     '- false
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """;
@@ -61,12 +61,12 @@ public class AstBuilderIfsTest extends AstTestBase  {
              '- Stmt
                 '- IfBlock
                    '- if
-                      |- IfCondition
+                      |- Condition
                       |  '- []
                       |     |- x
                       |     |- %s
                       |     '- x
-                      '- IfSuite
+                      '- Suite
                          '- Stmt
                             '- Pass
           """;
@@ -90,7 +90,7 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  '- if
-                    |- IfCondition
+                    |- Condition
                     |  '- AtomPlus
                     |     |- test
                     |     '- ()
@@ -102,7 +102,7 @@ public class AstBuilderIfsTest extends AstTestBase  {
                     |           '- or
                     |              |- "no"
                     |              '- "dkna"
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- AtomPlus
                              |- compute
@@ -137,12 +137,12 @@ public class AstBuilderIfsTest extends AstTestBase  {
              '- Stmt
                 '- IfBlock
                    '- if
-                      |- IfCondition
+                      |- Condition
                       |  '- []
                       |     '- %s
                       |        |- x
                       |        '- y
-                      '- IfSuite
+                      '- Suite
                          '- Stmt
                             '- Pass
           """;
@@ -172,14 +172,14 @@ public class AstBuilderIfsTest extends AstTestBase  {
              '- Stmt
                 '- IfBlock
                    '- if
-                      |- IfCondition
+                      |- Condition
                       |  '- []
                       |     '- %s
                       |        |- a
                       |        |- b
                       |        |- c
                       |        '- d
-                      '- IfSuite
+                      '- Suite
                          '- Stmt
                             '- Pass
           """;
@@ -203,7 +203,7 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  '- if
-                    |- IfCondition
+                    |- Condition
                     |  '- []
                     |     '- or
                     |        |- not
@@ -211,7 +211,7 @@ public class AstBuilderIfsTest extends AstTestBase  {
                     |        '- and
                     |           |- y
                     |           '- z
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """;
@@ -233,11 +233,11 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  '- if
-                    |- IfCondition
+                    |- Condition
                     |  '- []
                     |     '- not
                     |        '- x
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """;
@@ -263,9 +263,9 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  '- if
-                    |- IfCondition
+                    |- Condition
                     |  '- true
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """,
@@ -274,10 +274,10 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  '- if
-                    |- IfCondition
+                    |- Condition
                     |  '- []
                     |     '- true
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """
@@ -301,14 +301,14 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  |- if
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- true
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  '- else
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """
@@ -341,17 +341,17 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  |- if
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- a
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  '- elif
-                    |- IfCondition
+                    |- Condition
                     |  '- []
                     |     '- b
-                    '- IfSuite
+                    '- Suite
                        |- Stmt
                        |  '- Pass
                        '- Stmt
@@ -362,24 +362,24 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  |- if
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- a
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  |- elif
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- b
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  '- elif
-                    |- IfCondition
+                    |- Condition
                     |  '- []
                     |     '- c
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """
@@ -415,21 +415,21 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  |- if
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- a
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  |- elif
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- b
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  '- else
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """,
@@ -438,28 +438,28 @@ public class AstBuilderIfsTest extends AstTestBase  {
            '- Stmt
               '- IfBlock
                  |- if
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- a
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  |- elif
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- b
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  |- elif
-                 |  |- IfCondition
+                 |  |- Condition
                  |  |  '- []
                  |  |     '- c
-                 |  '- IfSuite
+                 |  '- Suite
                  |     '- Stmt
                  |        '- Pass
                  '- else
-                    '- IfSuite
+                    '- Suite
                        '- Stmt
                           '- Pass
         """

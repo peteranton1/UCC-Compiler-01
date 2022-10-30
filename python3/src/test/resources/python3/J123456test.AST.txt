@@ -96,7 +96,7 @@
          |- Stmt
          |  '- IfBlock
          |     '- if
-         |        |- IfCondition
+         |        |- Condition
          |        |  '- AtomPlus
          |        |     |- test
          |        |     '- ()
@@ -108,7 +108,7 @@
          |        |           '- or
          |        |              |- "no"
          |        |              '- "dkna"
-         |        '- IfSuite
+         |        '- Suite
          |           '- Stmt
          |              '- AtomPlus
          |                 |- compute
@@ -121,7 +121,7 @@
          '- Stmt
             '- IfBlock
                '- if
-                  |- IfCondition
+                  |- Condition
                   |  '- AtomPlus
                   |     |- test
                   |     '- ()
@@ -133,7 +133,7 @@
                   |           '- or
                   |              |- "yes"
                   |              '- "maybe"
-                  '- IfSuite
+                  '- Suite
                      '- Stmt
                         '- AtomPlus
                            |- compute

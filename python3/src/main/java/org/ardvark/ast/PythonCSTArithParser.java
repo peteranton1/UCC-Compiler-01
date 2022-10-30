@@ -41,6 +41,13 @@ public class PythonCSTArithParser {
     return parseArith(ctx, baseParser.errBuf("Term"));
   }
 
+  /*
+  /// factor: ('+'|'-'|'~') factor | power
+   */
+  public AstNode visitFactor(ParserRuleContext ctx) {
+    return parseFactor(ctx, baseParser.errBuf("Factor"));
+  }
+
   public AstNode parseArith(ParserRuleContext ctx,
                             StringBuilder errBuf) {
     errBuf.append("parseArith \n");
@@ -49,7 +56,7 @@ public class PythonCSTArithParser {
       errBuf.append("unknown 1 \n");
       String ctx1 = new Builder.Tree("").toStringASCII(ctx);
       return baseParser.panic.panic(ctx1, errBuf);
-    } else if (childCount == 1){
+    } else if (childCount == 1) {
       return visitor.visitChildren(ctx);
     }
     List<ParseTree> origChildren = ctx.children;
@@ -60,7 +67,7 @@ public class PythonCSTArithParser {
     int operPos = 1;
     ParseTree child1;
     AstNode astNode;
-    while(operPos + 1 < origChildren.size()) {
+    while (operPos + 1 < origChildren.size()) {
       child1 = origChildren.get(operPos);
       operPos += 2;
       reduceChildren = new ArrayList<>();
@@ -75,17 +82,39 @@ public class PythonCSTArithParser {
       int origSize = aggChildren.size();
       tempChildren = new ArrayList<>();
       tempChildren.add(astNode);
-      for(int i=2;i<origSize; i++) {
+      for (int i = 2; i < origSize; i++) {
         tempChildren.add(aggChildren.get(i));
       }
       aggChildren = tempChildren;
     }
     // check we got one node at the end
-    if(aggChildren.size() == 1){
+    if (aggChildren.size() == 1) {
       return aggChildren.get(0);
     }
     errBuf.append(String.format(
         "unexpected size: %d \n", aggChildren.size()));
     return baseParser.panic.panic(ctx, errBuf);
+  }
+
+  public AstNode parseFactor(ParserRuleContext ctx,
+                             StringBuilder errBuf) {
+    errBuf.append("parseFactor \n");
+    int childCount = ctx.getChildCount();
+    if (childCount <= 0 || childCount > 2) {
+      errBuf.append("unexpected childCount : ")
+          .append(childCount);
+      return baseParser.panic.panic(ctx, errBuf);
+    } else if (childCount == 1) {
+      return visitor.visitChildren(ctx);
+    }
+    NodeType nodeType = NodeType.textValueOf(ctx.getChild(0).getText());
+    AstNode astNode = visitor.visit(ctx.getChild(1));
+    List<AstNode> children = new ArrayList<>();
+    children.add(astNode);
+    return AstNode.builder()
+        .nodeType(nodeType)
+        .text(nodeType.getText())
+        .children(children)
+        .build();
   }
 }
