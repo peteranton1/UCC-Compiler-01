@@ -6,7 +6,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.ardvark.ast.NodeType.NAME;
+import static org.ardvark.ast.NodeType.*;
 
 @AllArgsConstructor
 public class PythonCSTBaseParser {
@@ -79,7 +79,7 @@ public class PythonCSTBaseParser {
     errBuf.append("parseName \n");
     String text = tree.getText();
     char ch = text.charAt(0);
-    if (Character.isAlphabetic(ch) || '.' == ch) {
+    if (Character.isAlphabetic(ch)) {
       return AstNode.builder()
           .nodeType(NAME)
           .text(text)

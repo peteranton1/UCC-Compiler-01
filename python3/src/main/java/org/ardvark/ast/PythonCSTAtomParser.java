@@ -30,10 +30,13 @@ public class PythonCSTAtomParser {
     errBuf.append("visitDottedName \n");
     List<AstNode> aggChildren = new ArrayList<>();
     AstNode astNode;
-    for (int i = 0; i < ctx.getChildCount(); i++) {
-      astNode = baseParser.parseName(ctx.getChild(i), errBuf);
-      if (astNode != null &&
-          !"." .equals(astNode.getText())) {
+
+    for (int pos = 0; pos < ctx.getChildCount(); pos++) {
+
+      ParseTree child = ctx.getChild(pos);
+      String text = child.getText();
+      if(!".".equals(text)) {
+        astNode = baseParser.parseName(child, errBuf);
         aggChildren.add(astNode);
       }
     }
