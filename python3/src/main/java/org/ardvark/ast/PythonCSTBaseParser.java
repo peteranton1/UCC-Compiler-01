@@ -1,6 +1,7 @@
 package org.ardvark.ast;
 
 import lombok.AllArgsConstructor;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
@@ -18,6 +19,32 @@ public class PythonCSTBaseParser {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising ").append(name).append(" \n");
     return errBuf;
+  }
+
+
+  public void checkCount(ParserRuleContext ctx,
+                         StringBuilder errBuf,
+                         int expectedCount,
+                         int childCount) {
+    if (expectedCount >= childCount) {
+      errBuf
+          .append("checkCount : unexpected childCount : ")
+          .append(childCount)
+          .append(" : expected : ")
+          .append(expectedCount)
+      ;
+      panic.panic(ctx, errBuf);
+    }
+  }
+
+  public void checkKwd(ParserRuleContext ctx,
+                       StringBuilder errBuf,
+                       String kwd) {
+    NodeType nodeType = NodeType.textValueOf(kwd);
+    if (UNKNOWN.equals(nodeType)) {
+      errBuf.append("checkKwd : unexpected : ").append(kwd);
+      panic.panic(ctx, errBuf);
+    }
   }
 
   public AstNode parseNumber(ParseTree tree, StringBuilder errBuf) {

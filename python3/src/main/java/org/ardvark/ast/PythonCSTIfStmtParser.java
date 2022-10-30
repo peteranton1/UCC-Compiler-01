@@ -92,7 +92,7 @@ public class PythonCSTIfStmtParser {
 
   public AstNode parseIfBlock(ParserRuleContext ctx, StringBuilder errBuf) {
     int childCount = ctx.getChildCount();
-    checkCount(ctx, errBuf, 0, childCount);
+    baseParser.checkCount(ctx, errBuf, 0, childCount);
     List<AstNode> ifChildren = new ArrayList<>();
 
     int pos = 0;
@@ -116,23 +116,23 @@ public class PythonCSTIfStmtParser {
                                     StringBuilder errBuf,
                                     int pos) {
     int childCount = ctx.getChildCount();
-    checkCount(ctx, errBuf, pos + 2, childCount);
+    baseParser.checkCount(ctx, errBuf, pos + 2, childCount);
 
     String kwd = ctx.getChild(pos).getText();
-    checkKwd(ctx, errBuf, kwd);
+    baseParser.checkKwd(ctx, errBuf, kwd);
 
     List<AstNode> children;
     NodeType nodeType = NodeType.textValueOf(kwd);
     if (OP_IF.equals(nodeType) || OP_ELIF.equals(nodeType)) {
-      checkCount(ctx, errBuf, pos + 3, childCount);
+      baseParser.checkCount(ctx, errBuf, pos + 3, childCount);
       String colon = ctx.getChild(pos + 2).getText();
-      checkKwd(ctx, errBuf, colon);
+      baseParser.checkKwd(ctx, errBuf, colon);
       AstNode testNode = visitDeaggregate(ctx.getChild(pos + 1), OP_CONDITION);
       AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 3), OP_SUITE);
       children = List.of(testNode, suiteNode);
     } else {
       String colon = ctx.getChild(pos + 1).getText();
-      checkKwd(ctx, errBuf, colon);
+      baseParser.checkKwd(ctx, errBuf, colon);
       AstNode suiteNode = visitDeaggregate(ctx.getChild(pos + 2), OP_SUITE);
       children = List.of(suiteNode);
     }
@@ -158,32 +158,6 @@ public class PythonCSTIfStmtParser {
         .children(children)
         .build();
   }
-
-  public void checkCount(ParserRuleContext ctx,
-                         StringBuilder errBuf,
-                         int expectedCount,
-                         int childCount) {
-    if (expectedCount >= childCount) {
-      errBuf
-          .append("checkCount : unexpected childCount : ")
-          .append(childCount)
-          .append(" : expected : ")
-          .append(expectedCount)
-      ;
-      baseParser.panic.panic(ctx, errBuf);
-    }
-  }
-
-  public void checkKwd(ParserRuleContext ctx,
-                       StringBuilder errBuf,
-                       String kwd) {
-    NodeType nodeType = NodeType.textValueOf(kwd);
-    if (UNKNOWN.equals(nodeType)) {
-      errBuf.append("checkKwd : unexpected : ").append(kwd);
-      baseParser.panic.panic(ctx, errBuf);
-    }
-  }
-
 
   public AstNode parseTestNot(ParserRuleContext ctx,
                               StringBuilder errBuf) {
