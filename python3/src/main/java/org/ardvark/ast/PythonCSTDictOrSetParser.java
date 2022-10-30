@@ -1,6 +1,5 @@
 package org.ardvark.ast;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -10,17 +9,21 @@ import java.util.List;
 
 import static org.ardvark.ast.NodeType.DICT_OR_SET;
 
-@AllArgsConstructor
 @Getter
 public class PythonCSTDictOrSetParser {
 
-  private final CstPanic panic;
   private final AstBuilderVisitor visitor;
+  private final PythonCSTBaseParser baseParser;
+
+  public PythonCSTDictOrSetParser(AstBuilderVisitor visitor) {
+    this.visitor = visitor;
+    this.baseParser = visitor.baseParser;
+  }
 
   /*
-/// expr_stmt: testlist_star_expr (augassign (yield_expr|testlist) |
-///                      ('=' (yield_expr|testlist_star_expr))*)
-   */
+  /// expr_stmt: testlist_star_expr (augassign (yield_expr|testlist) |
+  ///                      ('=' (yield_expr|testlist_star_expr))*)
+     */
   public AstNode visitDictOrSet(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising DictOrSet \n");

@@ -1,6 +1,5 @@
 package org.ardvark.ast;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -10,17 +9,20 @@ import java.util.List;
 
 import static org.ardvark.ast.NodeType.*;
 
-@AllArgsConstructor
 @Getter
 public class PythonCSTCallParser {
 
-  private final CstPanic panic;
-  private final StringUtils stringUtils = new StringUtils();
   private final AstBuilderVisitor visitor;
+  private final PythonCSTBaseParser baseParser;
+
+  public PythonCSTCallParser(AstBuilderVisitor visitor) {
+    this.visitor = visitor;
+    this.baseParser = visitor.baseParser;
+  }
 
   /*
-  /// trailer: '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME
-   */
+    /// trailer: '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME
+     */
   public AstNode visitTrailer(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising Trailer \n");
@@ -28,22 +30,22 @@ public class PythonCSTCallParser {
   }
 
   public AstNode parseTrailer(ParserRuleContext ctx,
-                            StringBuilder errBuf) {
+                              StringBuilder errBuf) {
     errBuf.append("parseTrailer \n");
 
     NodeType nodeType = getCallType(ctx, errBuf);
     AstNode subNode = null;
-    if(CALL_DOT.equals(nodeType)){
+    if (CALL_DOT.equals(nodeType)) {
       subNode = parseName(ctx.getChild(1), errBuf);
     }
     AstNode aggNode = visitor.visitChildren(ctx);
     List<AstNode> children = new ArrayList<>();
-    if(aggNode != null && AGG.equals(aggNode.getNodeType())){
+    if (aggNode != null && AGG.equals(aggNode.getNodeType())) {
       children.addAll(aggNode.getChildren());
-    } else if(aggNode != null){
+    } else if (aggNode != null) {
       children.add(aggNode);
     }
-    if(subNode != null){
+    if (subNode != null) {
       children.add(subNode);
     }
     return AstNode.builder()
@@ -55,17 +57,17 @@ public class PythonCSTCallParser {
 
   private NodeType getCallType(ParserRuleContext ctx,
                                StringBuilder errBuf) {
-    if(ctx.getChildCount()==0){
+    if (ctx.getChildCount() == 0) {
       errBuf.append("getCallType no children \n");
-      panic.panic(ctx, errBuf);
+      baseParser.panic.panic(ctx, errBuf);
     }
     String text = ctx.getChild(0).getText();
     char ch = text.charAt(0);
-    if('(' == ch) {
+    if ('(' == ch) {
       return CALL_ARG;
-    } else if('[' == ch) {
+    } else if ('[' == ch) {
       return CALL_SUB;
-    } else if('.' == ch) {
+    } else if ('.' == ch) {
       return CALL_DOT;
     } else {
       return UNKNOWN;
@@ -82,7 +84,7 @@ public class PythonCSTCallParser {
           .text(text)
           .build();
     } else {
-      return panic.panic(tree, errBuf);
+      return baseParser.panic.panic(tree, errBuf);
     }
   }
 }

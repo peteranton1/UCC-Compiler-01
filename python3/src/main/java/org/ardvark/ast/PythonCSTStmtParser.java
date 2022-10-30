@@ -1,6 +1,5 @@
 package org.ardvark.ast;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
 
@@ -9,16 +8,20 @@ import java.util.List;
 import static org.ardvark.ast.NodeType.AGG;
 import static org.ardvark.ast.NodeType.STMT;
 
-@AllArgsConstructor
 @Getter
 public class PythonCSTStmtParser {
 
-  private final CstPanic panic;
   private final AstBuilderVisitor visitor;
+  private final PythonCSTBaseParser baseParser;
+
+  public PythonCSTStmtParser(AstBuilderVisitor visitor) {
+    this.visitor = visitor;
+    this.baseParser = visitor.baseParser;
+  }
 
   /*
-  /// stmt: simple_stmt | compound_stmt
-   */
+    /// stmt: simple_stmt | compound_stmt
+     */
   public AstNode visitStmt(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising Stmt \n");

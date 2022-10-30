@@ -1,6 +1,5 @@
 package org.ardvark.ast;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
 
@@ -8,17 +7,20 @@ import java.util.List;
 
 import static org.ardvark.ast.NodeType.*;
 
-@AllArgsConstructor
 @Getter
 public class PythonCSTIfStmtParser {
 
-  private final CstPanic panic;
-  private final StringUtils stringUtils = new StringUtils();
   private final AstBuilderVisitor visitor;
+  private final PythonCSTBaseParser baseParser;
+
+  public PythonCSTIfStmtParser(AstBuilderVisitor visitor) {
+    this.visitor = visitor;
+    this.baseParser = visitor.baseParser;
+  }
 
   /*
-  /// pass_stmt: 'pass'
-   */
+    /// pass_stmt: 'pass'
+     */
   public AstNode visitPass_stmt(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising Pass \n");
@@ -98,7 +100,7 @@ public class PythonCSTIfStmtParser {
     if (childCount <= 0) {
       errBuf.append("parseIfStmt : wrong childCount : ")
           .append(childCount);
-      return panic.panic(ctx, errBuf);
+      return baseParser.panic.panic(ctx, errBuf);
     }
     AstNode astNode = visitor.visitChildren(ctx);
     List<AstNode> children ;
@@ -121,7 +123,7 @@ public class PythonCSTIfStmtParser {
     if (childCount <= 0 || childCount > 3) {
       errBuf.append("parseCompIf : wrong childCount : ")
           .append(childCount);
-      return panic.panic(ctx, errBuf);
+      return baseParser.panic.panic(ctx, errBuf);
     }
     AstNode astNode = visitor.visitChildren(ctx);
     return AstNode.builder()
@@ -139,7 +141,7 @@ public class PythonCSTIfStmtParser {
     if (childCount <= 0 || childCount > 2) {
       errBuf.append("parseTestNot : wrong childCount : ")
           .append(childCount);
-      return panic.panic(ctx, errBuf);
+      return baseParser.panic.panic(ctx, errBuf);
     }
     AstNode astNode = visitor.visitChildren(ctx);
     if (childCount == 1) {
@@ -162,7 +164,7 @@ public class PythonCSTIfStmtParser {
     if (childCount <= 0) {
       errBuf.append("parseTestOrAnd : wrong childCount : ")
           .append(childCount);
-      return panic.panic(ctx, errBuf);
+      return baseParser.panic.panic(ctx, errBuf);
     }
     AstNode astNode = visitor.visitChildren(ctx);
     if (childCount == 1) {
@@ -182,7 +184,7 @@ public class PythonCSTIfStmtParser {
     int childCount = ctx.getChildCount();
     if (childCount < 1) {
       errBuf.append("Comp_op has wrong child count: < 1");
-      return panic.panic(ctx, errBuf);
+      return baseParser.panic.panic(ctx, errBuf);
     }
     String text = ctx.getChild(0).getText();
     if (childCount > 1) {

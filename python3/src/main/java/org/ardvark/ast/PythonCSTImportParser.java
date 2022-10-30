@@ -1,6 +1,5 @@
 package org.ardvark.ast;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.RuleNode;
@@ -10,16 +9,20 @@ import java.util.List;
 import static org.ardvark.ast.NodeType.AGG;
 import static org.ardvark.ast.NodeType.IMPORT_FROM;
 
-@AllArgsConstructor
 @Getter
 public class PythonCSTImportParser {
 
-  private final CstPanic panic;
   private final AstBuilderVisitor visitor;
+  private final PythonCSTBaseParser baseParser;
+
+  public PythonCSTImportParser(AstBuilderVisitor visitor) {
+    this.visitor = visitor;
+    this.baseParser = visitor.baseParser;
+  }
 
   /*
-  /// simple_stmt: small_stmt (';' small_stmt)* [';'] NEWLINE
-   */
+    /// simple_stmt: small_stmt (';' small_stmt)* [';'] NEWLINE
+     */
   public AstNode visitImport_from(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising Import_from \n");

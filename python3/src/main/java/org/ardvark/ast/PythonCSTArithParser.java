@@ -1,6 +1,5 @@
 package org.ardvark.ast;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -9,21 +8,24 @@ import org.ardvark.python3.Builder;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @Getter
 public class PythonCSTArithParser {
 
-  private final CstPanic panic;
-  private final StringUtils stringUtils = new StringUtils();
   private final AstBuilderVisitor visitor;
+  private final PythonCSTBaseParser baseParser;
+
+  public PythonCSTArithParser(AstBuilderVisitor visitor) {
+    this.visitor = visitor;
+    this.baseParser = visitor.baseParser;
+  }
 
   /*
-    arith_expr
-       : term ( '+' term
-              | '-' term
-              )*
-       ;
-   */
+      arith_expr
+         : term ( '+' term
+                | '-' term
+                )*
+         ;
+     */
   public AstNode visitArith(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising Arith \n");
@@ -35,7 +37,7 @@ public class PythonCSTArithParser {
     }
     errBuf.append("unknown 1 \n");
     String ctx1 = new Builder.Tree("").toStringASCII(ctx);
-    return panic.panic(ctx1, errBuf);
+    return baseParser.panic.panic(ctx1, errBuf);
   }
 
   public AstNode parseArith(ParserRuleContext ctx,
@@ -75,7 +77,7 @@ public class PythonCSTArithParser {
     }
     errBuf.append(String.format(
         "unexpected size: %d \n", aggChildren.size()));
-    return panic.panic(ctx, errBuf);
+    return baseParser.panic.panic(ctx, errBuf);
   }
 
 }

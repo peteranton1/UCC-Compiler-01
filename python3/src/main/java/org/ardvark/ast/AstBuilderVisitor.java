@@ -10,9 +10,11 @@ import static org.ardvark.ast.NodeType.AGG;
 
 public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
+  public final PythonCSTBaseParser baseParser;
   private final PythonCSTAtomParser cstAtomParser;
   private final PythonCSTCompParser cstCompParser;
   private final PythonCSTCallParser cstCallParser;
+  private final PythonCSTDefParser cstDefParser;
   private final PythonCSTDictOrSetParser cstDictOrSetMakerParser;
   private final PythonCSTIfStmtParser cstIfStmtParser;
   private final PythonCSTImportParser cstImportParser;
@@ -20,15 +22,16 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
   private final PythonCSTArithParser cstArithParser;
 
   public AstBuilderVisitor() {
-    CstPanic cstPanic = new CstPanic();
-    cstAtomParser = new PythonCSTAtomParser(cstPanic, this);
-    cstCompParser = new PythonCSTCompParser(cstPanic, this);
-    cstCallParser = new PythonCSTCallParser(cstPanic, this);
-    cstDictOrSetMakerParser = new PythonCSTDictOrSetParser(cstPanic, this);
-    cstImportParser = new PythonCSTImportParser(cstPanic, this);
-    cstIfStmtParser = new PythonCSTIfStmtParser(cstPanic, this);
-    cstStmtParser = new PythonCSTStmtParser(cstPanic, this);
-    cstArithParser = new PythonCSTArithParser(cstPanic, this);
+    this.baseParser = new PythonCSTBaseParser(new CstPanic());
+    cstAtomParser = new PythonCSTAtomParser(this);
+    cstCompParser = new PythonCSTCompParser(this);
+    cstCallParser = new PythonCSTCallParser(this);
+    cstDefParser = new PythonCSTDefParser(this);
+    cstDictOrSetMakerParser = new PythonCSTDictOrSetParser(this);
+    cstImportParser = new PythonCSTImportParser(this);
+    cstIfStmtParser = new PythonCSTIfStmtParser(this);
+    cstStmtParser = new PythonCSTStmtParser(this);
+    cstArithParser = new PythonCSTArithParser(this);
   }
 
   @Override
@@ -87,22 +90,22 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitFuncdef(Python3Parser.FuncdefContext ctx) {
-    return super.visitFuncdef(ctx);
+    return cstDefParser.visitFuncdef(ctx);
   }
 
   @Override
   public AstNode visitParameters(Python3Parser.ParametersContext ctx) {
-    return super.visitParameters(ctx);
+    return cstDefParser.visitParameters(ctx);
   }
 
   @Override
   public AstNode visitTypedargslist(Python3Parser.TypedargslistContext ctx) {
-    return super.visitTypedargslist(ctx);
+    return cstDefParser.visitTypedargslist(ctx);
   }
 
   @Override
   public AstNode visitTfpdef(Python3Parser.TfpdefContext ctx) {
-    return super.visitTfpdef(ctx);
+    return cstDefParser.visitTfpdef(ctx);
   }
 
   @Override
@@ -461,27 +464,4 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
     return super.visitYield_arg(ctx);
   }
 
-  @Override
-  public AstNode visitStr(Python3Parser.StrContext ctx) {
-    return AstNode.builder()
-        .nodeType(NodeType.STRING)
-        .text(ctx.getText())
-        .build();
-  }
-
-  @Override
-  public AstNode visitNumber(Python3Parser.NumberContext ctx) {
-    return AstNode.builder()
-        .nodeType(NodeType.NUMBER)
-        .text(ctx.getText())
-        .build();
-  }
-
-  @Override
-  public AstNode visitInteger(Python3Parser.IntegerContext ctx) {
-    return AstNode.builder()
-        .nodeType(NodeType.NUMBER)
-        .text(ctx.getText())
-        .build();
-  }
 }

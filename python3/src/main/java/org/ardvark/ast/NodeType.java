@@ -11,12 +11,17 @@ public enum NodeType {
   ATOM_PLUS("AtomPlus"),
   AGG("Agg"),
   COLON(":"),
+  CALL_ARG("()"),
+  CALL_SUB("[]"),
+  CALL_DOT("."),
   DOTTED_NAME("DottedName"),
   DICT_OR_SET("{}"),
   DIV("/"),
   ELLIPSE("..."),
   EQUALS("="),
+  FUNCDEF("def"),
   IMPORT_FROM("ImportFrom"),
+  LIST("[]"),
   LITERAL("Literal"),
   MUL("*"),
   NAME("Name"),
@@ -26,14 +31,13 @@ public enum NodeType {
   OP_OR("or"),
   OP_NOT("not"),
   OP_IF("if"),
+  PARAMS("params"),
+  PARAM("param"),
   PASS("Pass"),
   STMT("Stmt"),
   STRING("String"),
-  SUB("-"),
-  CALL_ARG("()"),
-  CALL_SUB("[]"),
-  CALL_DOT("."),
-  LIST("[]");
+  SUB("-")
+  ;
 
   private final String text;
 
