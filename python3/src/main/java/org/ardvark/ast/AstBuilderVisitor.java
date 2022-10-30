@@ -248,7 +248,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitIf_stmt(Python3Parser.If_stmtContext ctx) {
-    return super.visitIf_stmt(ctx);
+    return cstIfStmtParser.visitIf_stmt(ctx);
   }
 
   @Override
@@ -448,7 +448,7 @@ public class AstBuilderVisitor extends Python3BaseVisitor<AstNode> {
 
   @Override
   public AstNode visitComp_if(Python3Parser.Comp_ifContext ctx) {
-    return super.visitComp_if(ctx);
+    return cstIfStmtParser.visitComp_if(ctx);
   }
 
   @Override

@@ -46,30 +46,89 @@ public class PythonCSTIfStmtParser {
   }
 
   /*
+  /// comp_if: 'if' test_nocond [comp_iter]
+   */
+  public AstNode visitComp_if(ParserRuleContext ctx) {
+    StringBuilder errBuf = new StringBuilder();
+    errBuf.append("Error Recognising Comp_if \n");
+    return parseCompIf(ctx, errBuf);
+  }
+
+  /*
+  /// if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
+   */
+  public AstNode visitIf_stmt(ParserRuleContext ctx) {
+    StringBuilder errBuf = new StringBuilder();
+    errBuf.append("Error Recognising If_stmt \n");
+    return parseIfStmt(ctx, errBuf);
+  }
+
+  /*
   /// or_test: and_test ('or' and_test)*
    */
+
   public AstNode visitOr_test(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising Or_test \n");
     return parseTestOrAnd(ctx, errBuf, OP_OR);
   }
-
   /*
   /// and_test: not_test ('and' not_test)*
    */
+
   public AstNode visitAnd_test(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising And_test \n");
     return parseTestOrAnd(ctx, errBuf, OP_AND);
   }
-
   /*
   /// not_test: 'not' not_test | comparison
    */
+
   public AstNode visitNot_test(ParserRuleContext ctx) {
     StringBuilder errBuf = new StringBuilder();
     errBuf.append("Error Recognising Not_test \n");
     return parseTestNot(ctx, errBuf);
+  }
+
+  public AstNode parseIfStmt(ParserRuleContext ctx, StringBuilder errBuf) {
+    errBuf.append("parseIfStmt \n");
+
+    int childCount = ctx.getChildCount();
+    if (childCount <= 0) {
+      errBuf.append("parseIfStmt : wrong childCount : ")
+          .append(childCount);
+      return panic.panic(ctx, errBuf);
+    }
+    AstNode astNode = visitor.visitChildren(ctx);
+    List<AstNode> children ;
+    if(AGG.equals(astNode.getNodeType())){
+      children = astNode.getChildren();
+    } else {
+      children = List.of(astNode);
+    }
+    return AstNode.builder()
+        .nodeType(OP_IF)
+        .text(OP_IF.getText())
+        .children(children)
+        .build();
+  }
+
+  public AstNode parseCompIf(ParserRuleContext ctx, StringBuilder errBuf) {
+    errBuf.append("parseCompIf \n");
+
+    int childCount = ctx.getChildCount();
+    if (childCount <= 0 || childCount > 3) {
+      errBuf.append("parseCompIf : wrong childCount : ")
+          .append(childCount);
+      return panic.panic(ctx, errBuf);
+    }
+    AstNode astNode = visitor.visitChildren(ctx);
+    return AstNode.builder()
+        .nodeType(OP_IF)
+        .text(OP_IF.getText())
+        .children(List.of(astNode))
+        .build();
   }
 
   public AstNode parseTestNot(ParserRuleContext ctx,
@@ -101,7 +160,7 @@ public class PythonCSTIfStmtParser {
 
     int childCount = ctx.getChildCount();
     if (childCount <= 0) {
-      errBuf.append("wrong childCount : ")
+      errBuf.append("parseTestOrAnd : wrong childCount : ")
           .append(childCount);
       return panic.panic(ctx, errBuf);
     }

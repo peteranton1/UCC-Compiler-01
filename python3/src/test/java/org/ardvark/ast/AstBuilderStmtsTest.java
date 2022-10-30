@@ -19,10 +19,11 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- []
-              |  '- false
-              '- Stmt
-                 '- Pass
+              '- if
+                 |- []
+                 |  '- false
+                 '- Stmt
+                    '- Pass
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -55,12 +56,13 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
       String expectedTemplate = """
           '- {}
              '- Stmt
-                |- []
-                |  |- x
-                |  |- %s
-                |  '- x
-                '- Stmt
-                   '- Pass
+                '- if
+                   |- []
+                   |  |- x
+                   |  |- %s
+                   |  '- x
+                   '- Stmt
+                      '- Pass
           """;
       String expected = String.format(expectedTemplate, compOp);
       String actual = nodeToString(actualNode);
@@ -86,12 +88,13 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
       String expectedTemplate = """
           '- {}
              '- Stmt
-                |- []
-                |  '- %s
-                |     |- x
-                |     '- y
-                '- Stmt
-                   '- Pass
+                '- if
+                   |- []
+                   |  '- %s
+                   |     |- x
+                   |     '- y
+                   '- Stmt
+                      '- Pass
           """;
       String expected = String.format(expectedTemplate, compOp);
       String actual = nodeToString(actualNode);
@@ -117,14 +120,15 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
       String expectedTemplate = """
           '- {}
              '- Stmt
-                |- []
-                |  '- %s
-                |     |- a
-                |     |- b
-                |     |- c
-                |     '- d
-                '- Stmt
-                   '- Pass
+                '- if
+                   |- []
+                   |  '- %s
+                   |     |- a
+                   |     |- b
+                   |     |- c
+                   |     '- d
+                   '- Stmt
+                      '- Pass
           """;
       String expected = String.format(expectedTemplate, combineOp);
       String actual = nodeToString(actualNode);
@@ -144,15 +148,16 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- []
-              |  '- or
-              |     |- not
-              |     |  '- x
-              |     '- and
-              |        |- y
-              |        '- z
-              '- Stmt
-                 '- Pass
+              '- if
+                 |- []
+                 |  '- or
+                 |     |- not
+                 |     |  '- x
+                 |     '- and
+                 |        |- y
+                 |        '- z
+                 '- Stmt
+                    '- Pass
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -170,11 +175,12 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- []
-              |  '- not
-              |     '- x
-              '- Stmt
-                 '- Pass
+              '- if
+                 |- []
+                 |  '- not
+                 |     '- x
+                 '- Stmt
+                    '- Pass
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);
@@ -282,26 +288,27 @@ public class AstBuilderStmtsTest  extends AstTestBase  {
     String expected = """
         '- {}
            '- Stmt
-              |- AtomPlus
-              |  |- test
-              |  '- ()
-              |     |- AtomPlus
-              |     |  |- data
-              |     |  '- .
-              |     |     '- Q1
-              |     '- []
-              |        '- or
-              |           |- "no"
-              |           '- "dkna"
-              '- Stmt
-                 '- AtomPlus
-                    |- compute
-                    '- ()
-                       |- AtomPlus
-                       |  |- data
-                       |  '- .
-                       |     '- Q1Yes
-                       '- "no"
+              '- if
+                 |- AtomPlus
+                 |  |- test
+                 |  '- ()
+                 |     |- AtomPlus
+                 |     |  |- data
+                 |     |  '- .
+                 |     |     '- Q1
+                 |     '- []
+                 |        '- or
+                 |           |- "no"
+                 |           '- "dkna"
+                 '- Stmt
+                    '- AtomPlus
+                       |- compute
+                       '- ()
+                          |- AtomPlus
+                          |  |- data
+                          |  '- .
+                          |     '- Q1Yes
+                          '- "no"
         """;
     String actual = nodeToString(actualNode);
     assertEquals(expected, actual);

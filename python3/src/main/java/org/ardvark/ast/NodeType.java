@@ -25,6 +25,7 @@ public enum NodeType {
   OP_AND("and"),
   OP_OR("or"),
   OP_NOT("not"),
+  OP_IF("if"),
   PASS("Pass"),
   STMT("Stmt"),
   STRING("String"),
