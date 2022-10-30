@@ -20,6 +20,7 @@ public class AstBuilderDefsTest extends AstTestBase  {
         '- {}
            '- Stmt
               '- def
+                 |- script
                  |- params
                  '- Stmt
                     '- Pass
@@ -41,6 +42,7 @@ public class AstBuilderDefsTest extends AstTestBase  {
         '- {}
            '- Stmt
               '- def
+                 |- script
                  |- params
                  |  '- param
                  |     '- a
@@ -64,6 +66,7 @@ public class AstBuilderDefsTest extends AstTestBase  {
         '- {}
            '- Stmt
               '- def
+                 |- script
                  |- params
                  |  |- param
                  |  |  '- a

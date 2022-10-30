@@ -97,14 +97,18 @@ public class PythonCSTDefParser {
   public AstNode parseFuncdef(ParserRuleContext ctx,
                               StringBuilder errBuf) {
     errBuf.append("parseFuncdef \n");
+    List<AstNode> children = new ArrayList<>();
+
+    AstNode nameNode = baseParser.parseName(ctx.getChild(1), errBuf);
+    children.add(nameNode);
 
     AstNode aggNode = visitor.visitChildren(ctx);
-    List<AstNode> children = new ArrayList<>();
     if (aggNode != null && AGG.equals(aggNode.getNodeType())) {
       children.addAll(aggNode.getChildren());
     } else if (aggNode != null) {
       children.add(aggNode);
     }
+
     return AstNode.builder()
         .nodeType(FUNCDEF)
         .text(FUNCDEF.getText())

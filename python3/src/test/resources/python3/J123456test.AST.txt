@@ -79,6 +79,7 @@
    |                       '- al
    '- Stmt
       '- def
+         |- script
          |- params
          |- Stmt
          |  '- =
